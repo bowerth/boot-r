@@ -1,23 +1,24 @@
 ---
 id: 1834
 title: Course&#58; Intro to R Bootcamp
-date: 2016-06-10
-author: Brad Boehmke
+date: 2016-10-02
+author: Bo Werth
 layout: page
 permalink: /r_bootcamp
 ---
 
 ### Instructor
 
-  * [Brad Boehmke](http://bradleyboehmke.github.io/)
+  * [Bo Werth](http://github.com/bowerth/)
 
 
 ### Class Information
 
-* Time: August 6 & 7, 1:15-4:15
-* Location: Lindner 608
-* Webpage: [http://uc-r.github.io/r_bootcamp](http://uc-r.github.io/r_bootcamp)
-* Additional Resources: [http://uc-r.github.io/](http://uc-r.github.io/)
+* R Programming I - Overview: 25 Oct AM
+* R Programming II - Graphics: 25 Oct PM
+* Location: OECD, Paris, France
+* Webpage: [http://boot.rdata.work/r_bootcamp](boot.rdata.work/r_bootcamp)
+* Additional Resources: [http://github.com/bowerth/boot-r](http://github.com/bowerth/boot-r)
 
 ### Course Description 
 

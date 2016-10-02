@@ -17,7 +17,7 @@ permalink: /r_bootcamp
 * R Programming I - Overview: 25 Oct AM
 * R Programming II - Graphics: 25 Oct PM
 * Location: OECD, Paris, France
-* Webpage: [http://boot.rdata.work/r_bootcamp](boot.rdata.work/r_bootcamp)
+* Webpage: [boot.rdata.work/r_bootcamp](http://boot.rdata.work/r_bootcamp)
 * Additional Resources: [http://github.com/bowerth/boot-r](http://github.com/bowerth/boot-r)
 
 ### Course Description 

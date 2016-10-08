@@ -31,7 +31,7 @@
         usePrettify: true,
         enableSlideAreas: true,
         enableTouch: true,
-                        favIcon: 'images/uc_logo2.png',
+                        favIcon: '../images/uc_logo2.png',
               },
 
       // Author information
@@ -80,7 +80,7 @@
       position: absolute;
       bottom: 20px;
       left: 60px;
-      background: url(images/uc_logo2.png) no-repeat 0 50%;
+      background: url(../images/uc_logo2.png) no-repeat 0 50%;
       -webkit-background-size: 30px 30px;
       -moz-background-size: 30px 30px;
       -o-background-size: 30px 30px;
@@ -109,7 +109,7 @@
           </hgroup>
   </slide>
 
-<slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Key Things to Know</h2></hgroup><article  id="key-things-to-know" class="smaller ">
+<slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Key Things to Know1</h2></hgroup><article  id="key-things-to-know1" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>What to Remember from this Section</h2></hgroup><article  id="what-to-remember-from-this-section" class="smaller ">
 
@@ -122,7 +122,7 @@
 <li>Web scraping is a dense subject but scraping online text/Excel files <em>can</em> be as easy as reading in these files from your hard drive</li>
 </ol>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Built-in Data</h2></hgroup><article  id="built-in-data" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Built-in Data</h2></hgroup><article  id="built-in-data" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Built-in Data Sets</h2></hgroup><article  id="built-in-data-sets" class="smaller ">
 
@@ -218,7 +218,7 @@ state.region</pre>
 
 <p>Description from the help screen: &quot;This famous (Fisher&#39;s or Anderson&#39;s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.&quot;</p>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Importing Text Files</h2></hgroup><article  id="importing-text-files" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Importing Text Files</h2></hgroup><article  id="importing-text-files" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Importing Text Files </h2><h3> .csv .txt .tsv</h3></hgroup><article  id="importing-text-files-.csv-.txt-.tsv" class="smaller ">
 
@@ -245,7 +245,7 @@ state.region</pre>
 
 <p>Use <code>read.csv</code> for comma separated files (automatically sets the <code>sep = &quot;,&quot;</code>)</p>
 
-<pre class = 'prettyprint lang-r'>read.csv(&quot;data/mydata.csv&quot;)
+<pre class = 'prettyprint lang-r'>read.csv(&quot;../data/mydata.csv&quot;)
 ##   variable.1 variable.2 variable.3
 ## 1         10       beer       TRUE
 ## 2         25       wine       TRUE
@@ -255,7 +255,7 @@ state.region</pre>
 
 <p>Use <code>read.delim</code> for tab delimited files (automatically sets the <code>sep = &quot;\t&quot;</code>)</p>
 
-<pre class = 'prettyprint lang-r'>read.delim(&quot;data/mydata.txt&quot;)
+<pre class = 'prettyprint lang-r'>read.delim(&quot;../data/mydata.txt&quot;)
 ##   variable.1 variable.2 variable.3
 ## 1         10       beer       TRUE
 ## 2         25       wine       TRUE
@@ -265,7 +265,7 @@ state.region</pre>
 
 <p>When importing data, save to a file by using the assignment operator:</p>
 
-<pre class = 'prettyprint lang-r'>mydata &lt;- read.delim(&quot;data/mydata.tsv&quot;)
+<pre class = 'prettyprint lang-r'>mydata &lt;- read.delim(&quot;../data/mydata.tsv&quot;)
 
 mydata
 ##   variable.1 variable.2 variable.3
@@ -305,7 +305,7 @@ mydata
 
 <p><code>1</code> &amp; <code>2</code>: Read in the <code>facebook.tsv</code> file and save as <code>facebook</code></p>
 
-<pre class = 'prettyprint lang-r'>facebook &lt;- read.delim(&quot;data/facebook.tsv&quot;)</pre>
+<pre class = 'prettyprint lang-r'>facebook &lt;- read.delim(&quot;../data/facebook.tsv&quot;)</pre>
 
 <p><br></p>
 
@@ -313,7 +313,7 @@ mydata
 
 <pre class = 'prettyprint lang-r'>View(facebook)</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Importing Excel Files</h2></hgroup><article  id="importing-excel-files" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Importing Excel Files</h2></hgroup><article  id="importing-excel-files" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Importing Excel Files</h2></hgroup><article  id="importing-excel-files-1" class="smaller ">
 
@@ -327,7 +327,7 @@ mydata
 
 library(readxl)
 
-read_excel(&quot;data/mydata.xlsx&quot;, sheet = &quot;Sheet5&quot;)
+read_excel(&quot;../data/mydata.xlsx&quot;, sheet = &quot;Sheet5&quot;)
 ##   variable 1 variable 2 variable 3 variable 4          variable 5
 ## 1         10       beer          1      42328 2015-11-20 13:30:00
 ## 2         25       wine          1         NA 2015-11-21 16:30:00
@@ -361,7 +361,7 @@ read_excel(&quot;data/mydata.xlsx&quot;, sheet = &quot;Sheet5&quot;)
 
 <p><code>1</code> &amp; <code>2</code>: Read in the <code>.xlsx</code> file and save as <code>pew</code></p>
 
-<pre class = 'prettyprint lang-r'>pew &lt;- read_excel(&quot;data/PEW Middle Class Data.xlsx&quot;, sheet = &quot;3. Median HH income, metro&quot;, skip = 5)</pre>
+<pre class = 'prettyprint lang-r'>pew &lt;- read_excel(&quot;../data/PEW Middle Class Data.xlsx&quot;, sheet = &quot;3. Median HH income, metro&quot;, skip = 5)</pre>
 
 <p><br></p>
 
@@ -369,7 +369,7 @@ read_excel(&quot;data/mydata.xlsx&quot;, sheet = &quot;Sheet5&quot;)
 
 <pre class = 'prettyprint lang-r'>View(pew)</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Scraping Online Files</h2></hgroup><article  id="scraping-online-files" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Scraping Online Files</h2></hgroup><article  id="scraping-online-files" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Scraping Online Files </h2><h3> Tabular files</h3></hgroup><article  id="scraping-online-files-tabular-files" class="smaller ">
 
@@ -445,7 +445,7 @@ reddit &lt;- read.csv(url)</pre>
 
 <pre class = 'prettyprint lang-r'>View(reddit)</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Key Things to Remember</h2></hgroup><article  id="key-things-to-remember" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Key Things to Remember</h2></hgroup><article  id="key-things-to-remember" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Remember These Functions!</h2></hgroup><article  id="remember-these-functions" class="smaller ">
 
@@ -528,4 +528,3 @@ reddit &lt;- read.csv(url)</pre>
 
 </body>
 </html>
-

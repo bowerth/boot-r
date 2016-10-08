@@ -31,7 +31,7 @@
         usePrettify: true,
         enableSlideAreas: true,
         enableTouch: true,
-                        favIcon: 'images/uc_logo2.png',
+                        favIcon: '../images/uc_logo2.png',
               },
 
       // Author information
@@ -80,7 +80,7 @@
       position: absolute;
       bottom: 20px;
       left: 60px;
-      background: url(images/uc_logo2.png) no-repeat 0 50%;
+      background: url(../images/uc_logo2.png) no-repeat 0 50%;
       -webkit-background-size: 30px 30px;
       -moz-background-size: 30px 30px;
       -o-background-size: 30px 30px;
@@ -109,7 +109,7 @@
           </hgroup>
   </slide>
 
-<slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Key Things to Know</h2></hgroup><article  id="key-things-to-know" class="smaller ">
+<slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Key Things to Know</h2></hgroup><article  id="key-things-to-know" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>What to Remember from this Section </h2><h3> Primary data structures to hold your data</h3></hgroup><article  id="what-to-remember-from-this-section-primary-data-structures-to-hold-your-data" class="smaller ">
 
@@ -157,7 +157,7 @@
 <li>Apply functions to <strong>summarize</strong> the elements in these data structures</li>
 </ol>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Data Structures </h2><h3> Understanding key properties</h3></hgroup><article  id="data-structures-understanding-key-properties" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Data Structures </h2><h3> Understanding key properties</h3></hgroup><article  id="data-structures-understanding-key-properties" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Common Functions to Learn About Your Data Structure</h2></hgroup><article  id="common-functions-to-learn-about-your-data-structure" class="smaller ">
 
@@ -200,7 +200,7 @@
 </tr>
 </table>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Vectors </h2><h3> The fundamental building block</h3></hgroup><article  id="vectors-the-fundamental-building-block" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Vectors </h2><h3> The fundamental building block</h3></hgroup><article  id="vectors-the-fundamental-building-block" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Vectors: creating</h2></hgroup><article  id="vectors-creating" class="smaller ">
 
@@ -235,7 +235,7 @@ rep(1:4, each = 2)
 <p>Each variable in our <code>facebook</code> data is simply a vector. Let&#39;s assess the <code>likes</code> vector:</p>
 
 <pre class = 'prettyprint lang-r'># read in facebook data and create a vector with the likes data
-facebook &lt;- read.delim(&quot;data/facebook.tsv&quot;)
+facebook &lt;- read.delim(&quot;../data/facebook.tsv&quot;)
 likes &lt;- facebook$likes
 
 class(likes)
@@ -6290,7 +6290,7 @@ sum(fc &gt;= 1000)
 which(fc == max(fc))
 ## [1] 98160</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Matrices </h2><h3> Just a 2-dimensional vector</h3></hgroup><article  id="matrices-just-a-2-dimensional-vector" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Matrices </h2><h3> Just a 2-dimensional vector</h3></hgroup><article  id="matrices-just-a-2-dimensional-vector" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Matrices: creating</h2></hgroup><article  id="matrices-creating" class="smaller ">
 
@@ -6326,7 +6326,7 @@ class(m)
 ## [1] &quot;matrix&quot;
 
 str(m)
-##  num [1:3, 1:4] 0.651 0.393 0.85 0.278 0.892 ...
+##  num [1:3, 1:4] 0.232 0.96 0.678 0.649 0.259 ...
 
 length(m)
 ## [1] 12
@@ -6348,24 +6348,24 @@ dim(m)
 
 <pre class = 'prettyprint lang-r'># extract individual elements
 m[1, 3]
-## [1] 0.1354398
+## [1] 0.5786557
 
 # subset for first two rows and all columns
 m[1:2, ]
 ##           [,1]      [,2]      [,3]      [,4]
-## [1,] 0.6514984 0.2782969 0.1354398 0.3040956
-## [2,] 0.3933071 0.8917796 0.3455705 0.9166648
+## [1,] 0.2320122 0.6487597 0.5786557 0.6175314
+## [2,] 0.9604499 0.2585272 0.4977849 0.4422055
 
 # subset for second column (simplify)
 m[, 2]
-## [1] 0.2782969 0.8917796 0.6302678
+## [1] 0.6487597 0.2585272 0.2071979
 
 # subset for second column (don&#39;t simplify)
 m[, 2, drop = FALSE]
 ##           [,1]
-## [1,] 0.2782969
-## [2,] 0.8917796
-## [3,] 0.6302678</pre>
+## [1,] 0.6487597
+## [2,] 0.2585272
+## [3,] 0.2071979</pre>
 
 </article></slide><slide class=''><hgroup><h2>Matrices: comparison operators</h2></hgroup><article  id="matrices-comparison-operators" class="smaller ">
 
@@ -6374,48 +6374,48 @@ m[, 2, drop = FALSE]
 <pre class = 'prettyprint lang-r'># comparison operators returns a matrix of logical values
 m &gt; .5
 ##       [,1]  [,2]  [,3]  [,4]
-## [1,]  TRUE FALSE FALSE FALSE
-## [2,] FALSE  TRUE FALSE  TRUE
-## [3,]  TRUE  TRUE FALSE  TRUE
+## [1,] FALSE  TRUE  TRUE  TRUE
+## [2,]  TRUE FALSE FALSE FALSE
+## [3,]  TRUE FALSE FALSE FALSE
 
 # how many elements in the matrix are greater than .5
 sum(m &gt; .5)
-## [1] 6
+## [1] 5
 
 # which elements are greater than .5
 which(m &gt; .5)
-## [1]  1  3  5  6 11 12
+## [1]  2  3  4  7 10
 
 # subset with comparison returns a vector
 m[m &gt; .5]
-## [1] 0.6514984 0.8503755 0.8917796 0.6302678 0.9166648 0.8628945</pre>
+## [1] 0.9604499 0.6781306 0.6487597 0.5786557 0.6175314</pre>
 
 </article></slide><slide class=''><hgroup><h2>Matrices: summarizing</h2></hgroup><article  id="matrices-summarizing" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># provides summary stats for each column of the matrix
 summary(m)
 ##        V1               V2               V3               V4        
-##  Min.   :0.3933   Min.   :0.2783   Min.   :0.1354   Min.   :0.3041  
-##  1st Qu.:0.5224   1st Qu.:0.4543   1st Qu.:0.2405   1st Qu.:0.5835  
-##  Median :0.6515   Median :0.6303   Median :0.3456   Median :0.8629  
-##  Mean   :0.6317   Mean   :0.6001   Mean   :0.3107   Mean   :0.6946  
-##  3rd Qu.:0.7509   3rd Qu.:0.7610   3rd Qu.:0.3984   3rd Qu.:0.8898  
-##  Max.   :0.8504   Max.   :0.8918   Max.   :0.4512   Max.   :0.9167
+##  Min.   :0.2320   Min.   :0.2072   Min.   :0.1309   Min.   :0.4340  
+##  1st Qu.:0.4551   1st Qu.:0.2329   1st Qu.:0.3143   1st Qu.:0.4381  
+##  Median :0.6781   Median :0.2585   Median :0.4978   Median :0.4422  
+##  Mean   :0.6235   Mean   :0.3715   Mean   :0.4024   Mean   :0.4979  
+##  3rd Qu.:0.8193   3rd Qu.:0.4536   3rd Qu.:0.5382   3rd Qu.:0.5299  
+##  Max.   :0.9604   Max.   :0.6488   Max.   :0.5787   Max.   :0.6175
 
 # regular stat functions will be applied across all elements in the matrix
 mean(m)
-## [1] 0.5592788
+## [1] 0.4738487
 
 median(m)
-## [1] 0.5407113
+## [1] 0.4699952
 
 # get statistic for a specific row or column
 mean(m[1, ])
-## [1] 0.3423327
+## [1] 0.5192398
 
 # get statistic for every row (MARGIN = 1) or column (MARGIN = 2)
 apply(m, MARGIN = 1, FUN = mean)
-## [1] 0.3423327 0.6368305 0.6986732</pre>
+## [1] 0.5192398 0.5397419 0.3625645</pre>
 
 </article></slide><slide class=''><hgroup><h2>Your Turn</h2></hgroup><article  id="your-turn-1" class="smaller ">
 
@@ -6443,7 +6443,7 @@ Q2 &lt;- matrix(Q1, nrow = 10)
 dim(Q2)
 ## [1] 10  7</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Lists </h2><h3> An ordered collection of objects</h3></hgroup><article  id="lists-an-ordered-collection-of-objects" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Lists </h2><h3> An ordered collection of objects</h3></hgroup><article  id="lists-an-ordered-collection-of-objects" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Lists: creating</h2></hgroup><article  id="lists-creating" class="smaller ">
 
@@ -6498,7 +6498,7 @@ names(l1)
 
 <center>
 
-preserve: <code>list[component]</code> <br>        simplify: <code>list[[component]]</code> <br> simplify: <code>list$component</code>
+preserve: <code>list[component]</code> <br>        simplify: <code>list[[component]]</code> <br> simplify: <code>list$component</code>
 
 </center>
 
@@ -6632,7 +6632,7 @@ str(model)
 ##  $ df.residual  : int 30
 ##  $ xlevels      : Named list()
 ##  $ call         : language lm(formula = mpg ~ wt, data = mtcars)
-##  $ terms        :Classes &#39;terms&#39;, &#39;formula&#39; length 3 mpg ~ wt
+##  $ terms        :Classes &#39;terms&#39;, &#39;formula&#39;  language mpg ~ wt
 ##   .. ..- attr(*, &quot;variables&quot;)= language list(mpg, wt)
 ##   .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1
 ##   .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
@@ -6649,7 +6649,7 @@ str(model)
 ##  $ model        :&#39;data.frame&#39;:   32 obs. of  2 variables:
 ##   ..$ mpg: num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
 ##   ..$ wt : num [1:32] 2.62 2.88 2.32 3.21 3.44 ...
-##   ..- attr(*, &quot;terms&quot;)=Classes &#39;terms&#39;, &#39;formula&#39; length 3 mpg ~ wt
+##   ..- attr(*, &quot;terms&quot;)=Classes &#39;terms&#39;, &#39;formula&#39;  language mpg ~ wt
 ##   .. .. ..- attr(*, &quot;variables&quot;)= language list(mpg, wt)
 ##   .. .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1
 ##   .. .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
@@ -6719,7 +6719,7 @@ summary(Q1)
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## -258.40 -158.00 -105.30    0.00   11.14 4771.00</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Data Frames </h2><h3> The holy grail of data structures</h3></hgroup><article  id="data-frames-the-holy-grail-of-data-structures" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Data Frames </h2><h3> The holy grail of data structures</h3></hgroup><article  id="data-frames-the-holy-grail-of-data-structures" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Data Frames</h2></hgroup><article  id="data-frames" class="smaller ">
 
@@ -26890,7 +26890,7 @@ summary(facebook)
 
 </article></slide><slide class=''><hgroup><h2>Your Turn</h2></hgroup><article  id="your-turn-3" class="smaller ">
 
-<p><font size="6">1. <strong>Import</strong> the <code>reddit</code> data located at<br><br>     <a href='https://bradleyboehmke.github.io/public/data/reddit.csv' title=''>https://bradleyboehmke.github.io/public/data/reddit.csv</a></font><br><br><br> <font size="6">2. What variables (column <strong>names</strong>) does this data frame contain?</font><br><br><br> <font size="6">3. How many users have the <strong>employment status</strong> of &quot;Student&quot;?</font><br><br><br> <font size="6">4. <strong>Subset</strong> the <code>reddit</code> data frame for only those individuals that<br>    are students.</font></p>
+<p><font size="6">1. <strong>Import</strong> the <code>reddit</code> data located at<br><br>     <a href='https://bradleyboehmke.github.io/public/data/reddit.csv' title=''>https://bradleyboehmke.github.io/public/data/reddit.csv</a></font><br><br><br> <font size="6">2. What variables (column <strong>names</strong>) does this data frame contain?</font><br><br><br> <font size="6">3. How many users have the <strong>employment status</strong> of &quot;Student&quot;?</font><br><br><br> <font size="6">4. <strong>Subset</strong> the <code>reddit</code> data frame for only those individuals that<br>    are students.</font></p>
 
 </article></slide><slide class=''><hgroup><h2>Solution</h2></hgroup><article  id="solution-3" class="smaller ">
 
@@ -26907,7 +26907,7 @@ summary(reddit$employment.status)
 # 4. Subset the reddit data frame for only those individuals that are students.
 students &lt;- subset(reddit, employment.status == &quot;Student&quot;)</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Key Things to Remember</h2></hgroup><article  id="key-things-to-remember" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Key Things to Remember</h2></hgroup><article  id="key-things-to-remember" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Remember These Functions!</h2></hgroup><article  id="remember-these-functions" class="smaller ">
 

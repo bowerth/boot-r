@@ -31,7 +31,7 @@
         usePrettify: true,
         enableSlideAreas: true,
         enableTouch: true,
-                        favIcon: 'images/uc_logo2.png',
+                        favIcon: '../images/uc_logo2.png',
               },
 
       // Author information
@@ -80,7 +80,7 @@
       position: absolute;
       bottom: 20px;
       left: 60px;
-      background: url(images/uc_logo2.png) no-repeat 0 50%;
+      background: url(../images/uc_logo2.png) no-repeat 0 50%;
       -webkit-background-size: 30px 30px;
       -moz-background-size: 30px 30px;
       -o-background-size: 30px 30px;
@@ -109,7 +109,7 @@
           </hgroup>
   </slide>
 
-<slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Key Things to Remember</h2></hgroup><article  id="key-things-to-remember" class="smaller ">
+<slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Key Things to Remember</h2></hgroup><article  id="key-things-to-remember" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>What to Remember from this Section</h2></hgroup><article  id="what-to-remember-from-this-section" class="smaller ">
 
@@ -149,14 +149,14 @@
 </tr>
 </table>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Numbers</h2></hgroup><article  id="numbers" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Numbers</h2></hgroup><article  id="numbers" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Numbers: two types of numbers</h2></hgroup><article  id="numbers-two-types-of-numbers" class="smaller ">
 
 <p>Numeric data pimarily comes in two forms: integer &amp; double (double precision floating point)</p>
 
 <pre class = 'prettyprint lang-r'># create a string of double-precision values
-dbl_var &lt;- c(1, 2.5, 4.5)  
+dbl_var &lt;- c(1, 2.5, 4.5) 
 class(dbl_var)
 ## [1] &quot;numeric&quot;
 
@@ -233,7 +233,7 @@ round(x, digits = 1)
 </article></slide><slide class=''><hgroup><h2>Solution</h2></hgroup><article  id="solution" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># import the numbers-your-turn.csv file in the data folder
-df &lt;- read.csv(&quot;data/numbers-your-turn.csv&quot;)
+df &lt;- read.csv(&quot;../data/numbers-your-turn.csv&quot;)
 
 # 1. Are the vectors x &amp; y equal? Exactly or approximately equal?
 identical(df$x, df$y)
@@ -260,7 +260,7 @@ identical(x, y)
 all.equal(x, y)
 ## [1] TRUE</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Characters </h2><h3> &quot;Hello world!&quot;</h3></hgroup><article  id="characters-hello-world" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Characters </h2><h3> &quot;Hello world!&quot;</h3></hgroup><article  id="characters-hello-world" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Characters: creating simple character strings</h2></hgroup><article  id="characters-creating-simple-character-strings" class="smaller ">
 
@@ -362,7 +362,7 @@ nchar(c(&quot;How&quot;, &quot;many&quot;, &quot;characters&quot;, &quot;are&quo
 </ul></li>
 </ul>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Factors </h2><h3> aka categorical variables</h3></hgroup><article  id="factors-aka-categorical-variables" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Factors </h2><h3> aka categorical variables</h3></hgroup><article  id="factors-aka-categorical-variables" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Factors: different from characters</h2></hgroup><article  id="factors-different-from-characters" class="smaller ">
 
@@ -445,7 +445,7 @@ age.range2
 
 <p>If you want to know the levels that exist in your factor variable use <code>levels()</code></p>
 
-<pre class = 'prettyprint lang-r'>facebook &lt;- read.delim(&quot;data/facebook.tsv&quot;)
+<pre class = 'prettyprint lang-r'>facebook &lt;- read.delim(&quot;../data/facebook.tsv&quot;)
 
 levels(facebook$gender)
 ## [1] &quot;female&quot; &quot;male&quot;</pre>
@@ -470,7 +470,7 @@ levels(facebook$gender)
 </article></slide><slide class=''><hgroup><h2>Solution</h2></hgroup><article  id="solution-1" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># import the reddit.csv file in the data folder
-reddit &lt;- read.csv(&quot;data/reddit.csv&quot;)
+reddit &lt;- read.csv(&quot;../data/reddit.csv&quot;)
 
 # 1. What are the levels for the `income.range` variable?
 levels(reddit$income.range)
@@ -494,7 +494,7 @@ table(reddit$income.range)
 ## $100,000 - $149,999    $150,000 or more 
 ##                3522                2695</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Dates </h2><h3> The neglected variable</h3></hgroup><article  id="dates-the-neglected-variable" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Dates </h2><h3> The neglected variable</h3></hgroup><article  id="dates-the-neglected-variable" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Dates: creating</h2></hgroup><article  id="dates-creating" class="smaller ">
 
@@ -704,7 +704,7 @@ summary(dates)
 </article></slide><slide class=''><hgroup><h2>Solution</h2></hgroup><article  id="solution-2" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># Import the `facebook.tsv` file in the data folder
-facebook &lt;- read.delim(&quot;data/facebook.tsv&quot;)
+facebook &lt;- read.delim(&quot;../data/facebook.tsv&quot;)
 
 # 1. Create a new date variable that combines the dob_day, dob_month, &amp; dob_year variables.
 facebook$dob &lt;- as.Date(ISOdate(year = facebook$dob_year, 
@@ -718,7 +718,7 @@ summary(facebook$dob)
 ##         Max. 
 ## &quot;2000-10-27&quot;</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Logical </h2><h3> Boolean as in George Boole</h3></hgroup><article  id="logical-boolean-as-in-george-boole" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Logical </h2><h3> Boolean as in George Boole</h3></hgroup><article  id="logical-boolean-as-in-george-boole" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Logical: the basics</h2></hgroup><article  id="logical-the-basics" class="smaller ">
 
@@ -745,7 +745,7 @@ class(z)
 all(z)
 ## [1] FALSE</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Key Things to Remember</h2></hgroup><article  id="key-things-to-remember-1" class="smaller ">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Key Things to Remember</h2></hgroup><article  id="key-things-to-remember-1" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Remember These Functions!</h2></hgroup><article  id="remember-these-functions" class="smaller ">
 

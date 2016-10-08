@@ -7,7 +7,7 @@ library(tidyr)
 library(ggplot2)
 library(lubridate)
 
-crime <- read_csv("data/crime.csv")
+crime <- read_csv("~/Dropbox/Academia/University of Cincinnati/Case Studies/Cincinnati Crime/crime.csv")
 
 
 # What are the top 25 most prevelant offenses in this data set? What are some
@@ -77,3 +77,8 @@ crime %>%
         arrange(Offense, desc(n)) %>%
         group_by(Offense) %>%
         top_n(1)
+
+
+
+
+

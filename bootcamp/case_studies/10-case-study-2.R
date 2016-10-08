@@ -6,7 +6,7 @@ library(dplyr)
 library(ggplot2)
 library(ggthemes)
 
-oes <- read_excel("data/all_data_M_2015.xlsx", sheet = 'All May 2015 Data')
+oes <- read_excel("~/Dropbox/Academia/University of Cincinnati/Case Studies/Occupational Employment Stats/all_data_M_2015.xlsx", sheet = 'All May 2015 Data')
 
 
 
@@ -85,6 +85,5 @@ ggplot(top25_salary, aes(a_median, `occ title`)) +
               plot.title = element_text(size = 18, margin = margin(b = 10)),
               plot.subtitle = element_text(size = 12, color = "darkslategrey", margin = margin(b = 25)),
               plot.caption = element_text(size = 8, margin = margin(t = 10), color = "grey70"))
-
 
 

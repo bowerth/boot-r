@@ -12,11 +12,11 @@ iris
 USArrests
 
 # package built-in data sets
-data(package = "ggplot2")       
+data(economics, package = "ggplot2")
 economics
 
 # understand more behind the data
-?economics
+?ggplot2::economics
 
 
 ########################

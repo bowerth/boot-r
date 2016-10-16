@@ -369,14 +369,73 @@ read_excel(&quot;../data/mydata.xlsx&quot;, sheet = &quot;Sheet5&quot;)
 
 <pre class = 'prettyprint lang-r'>View(pew)</pre>
 
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Importing SAS and Stata files</h2></hgroup><article  id="importing-sas-and-stata-files" class="smaller ">
+
+</article></slide><slide class=''><hgroup><h2>Importing SAS Files</h2></hgroup><article  id="importing-sas-files" class="smaller ">
+
+<ul>
+<li>The SAS System uses a prorpietary binary format for data files (<code>.sas7bdat</code> and <code>.sas7bcat</code>)</li>
+<li>The <a href='http://github.com/tidyverse/haven' title=''><code>haven</code></a> package leverages the <a href='https://github.com/WizardMac/ReadStat' title=''>ReadStat</a> C library to read both file formats and write <code>.sas7bdat</code></li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>library(haven)
+
+helpfromSAS &lt;- read_sas(&quot;../data/help.sas7bdat&quot;)
+str(helpfromSAS[, 1:2])
+## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    453 obs. of  2 variables:
+##  $ ID  : atomic  1 2 3 4 5 6 7 8 9 10 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;subject id&quot;
+##  $ E2B1: atomic  NA NA NA NA NA NA NA 1 1 1 ...
+##   ..- attr(*, &quot;label&quot;)= chr &quot;1 e2b&quot;</pre>
+
+<ul>
+<li>Benefits of <code>haven</code>
+
+<ul>
+<li>date times are converted to corresponding R classes</li>
+<li>labelled vectors are returned as a new labelled class</li>
+<li>can easily coerce to factors or replace labelled values with missings</li>
+<li>all functions return tibbles</li>
+<li>read more about the C library <a href='https://github.com/WizardMac/ReadStat' title=''>here</a></li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Importing Stata Files</h2></hgroup><article  id="importing-stata-files" class="smaller ">
+
+<ul>
+<li><code>haven</code>/<code>ReadStat</code> can read Stata files up to version 14 (latest) and save objets as <code>.dta</code></li>
+<li>Stata missing values are displayed as <code>NaN</code></li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>carsdataSTATA &lt;- read_dta(&quot;../data/carsdata.dta&quot;)
+psych::describe(carsdataSTATA, skew = FALSE)
+##        vars n mean   sd median trimmed  mad min max range   se
+## cars      1 5    2 0.71      2       2 0.00   1   3     2 0.32
+## hhsize    2 5    3 1.58      3       3 1.48   1   5     4 0.71
+
+carsdataSTATA$cars[1] &lt;- NA
+write_dta(carsdataSTATA, path = &quot;../data/carsdata_out.dta&quot;, version = 14)
+
+read_dta(&quot;../data/carsdata_out.dta&quot;)[1:3,]
+## # A tibble: 3 × 2
+##    cars hhsize
+##   &lt;dbl&gt;  &lt;dbl&gt;
+## 1   NaN      1
+## 2     2      2
+## 3     2      3</pre>
+
+<ul>
+<li>Supports Stata &quot;extended&quot; missing values, <code>.A</code> through <code>.Z</code> using a tagged <code>NA</code> in R</li>
+<li>See <a href='https://github.com/tidyverse/haven/blob/master/vignettes/semantics.Rmd' title=''>semantics</a> vignette of <code>haven</code> package for additional information</li>
+</ul>
+
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Scraping Online Files</h2></hgroup><article  id="scraping-online-files" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Scraping Online Files </h2><h3> Tabular files</h3></hgroup><article  id="scraping-online-files-tabular-files" class="smaller ">
 
 <ul>
 <li>Dense subject with <em>LOTS</em> to learn</li>
-<li>We&#39;ll only focus on reading in tabular and Excel files stored online</li>
-<li>For more info regarding &quot;real web scraping&quot; see the tutorial at: <a href='boot.rdata.work/scraping' title=''>boot.rdata.work/scraping</a></li>
+<li>We&#39;ll only focus on reading in tabular and Excel files stored online <!-- - For more info regarding "real web scraping" see the tutorial at: [boot.rdata.work/scraping](boot.rdata.work/scraping) --></li>
 </ul>
 
 <p><br></p>
@@ -417,7 +476,7 @@ View(data_gov)</pre>
 
 <p><font size="7"> <code>1.</code> Download the file stored at:<br> </font></p>
 
-<p><font size="5"> <code>https://bowerth.github.io/public/../data/reddit.csv</code> </font></p>
+<p><font size="5"> <code>https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1</code> </font></p>
 
 <p><br></p>
 
@@ -431,11 +490,11 @@ View(data_gov)</pre>
 
 <p><br> <br></p>
 
-<p><code>1.</code> Download the file stored at: bowerth.github.io/public/../data/reddit.csv</p>
+<p><code>1.</code> Download the file stored at: <a href='https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1' title=''>https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1</a></p>
 
 <p><code>2.</code> Save it as an object titled <code>reddit</code></p>
 
-<pre class = 'prettyprint lang-r'>url &lt;- &quot;https://bowerth.github.io/public/../data/reddit.csv&quot;
+<pre class = 'prettyprint lang-r'>url &lt;- &quot;https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1&quot;
 
 reddit &lt;- read.csv(url)</pre>
 
@@ -444,6 +503,32 @@ reddit &lt;- read.csv(url)</pre>
 <p><code>3.</code> Take a peek at what this data looks like</p>
 
 <pre class = 'prettyprint lang-r'>View(reddit)</pre>
+
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>SDMX</h2></hgroup><article  id="sdmx" class="smaller ">
+
+</article></slide><slide class=''><hgroup><h2>SDMX</h2></hgroup><article  id="sdmx-1" class="smaller ">
+
+<ul>
+<li>Standard for Data and Metadata Exchange</li>
+<li>International Organisations (OECD, Eurostat, ECB, IMF, World Bank, Unesco, ILO)</li>
+<li>OECD.Stat: National <code>Accounts</code> &gt; <code>Annual National Accounts</code> &gt; <code>Main Aggregates</code> &gt; <code>GDP</code></li>
+<li>Use <code>Export (SDMX)</code>: <code>SNA_TABLE1/AUS+AUT+BEL.B1_GA+B1G_P119+B1G.C+V</code></li>
+<li>modify URL in SDMX browser at <a href='http://sdmx.rdata.work/OECD/SNA_TABLE1.AUS+AUT+BEL.B1_GA+B1G_P119+B1G.C+V/' title=''>sdmx.rdata.work</a></li>
+<li>download file from <a href='http://sdmx.rdata.work/getdownloadsdmx?' title=''>sdmx.rdata.work</a> using <code>getURL()</code></li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>tt &lt;- getURL(&quot;http://sdmx.rdata.work/OECD/SNA_TABLE1.AUS+AUT+BEL.B1_GA+B1G_P119+B1G.C+V/?start=2009&quot;)
+read.csv(text = tt)</pre>
+
+<pre >##   TIME_PERIOD SNA_TABLE1.AUS.B1_GA.C SNA_TABLE1.AUS.B1G_P119.C
+## 1  2009/01/01                1296797                   1206462
+## 2  2010/01/01                1409795                   1315663
+## 3  2011/01/01                1491046                   1396868</pre>
+
+<ul>
+<li>constantly growing number of providers</li>
+<li>few providers use latest standard of SDMX, making it difficult to develop tools</li>
+</ul>
 
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Key Things to Remember</h2></hgroup><article  id="key-things-to-remember" class="smaller ">
 
@@ -479,10 +564,22 @@ reddit &lt;- read.csv(url)</pre>
 <td align="left">imports Excel data stored online (provided by the <code>gdata</code> package)</td>
 </tr>
 <tr class="odd">
+<td align="left"><code>read_sas()</code></td>
+<td align="left">imports <code>.sas7bdat</code> and <code>.sas7bcat</code> files (provided by the <code>haven</code> package)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>read_dta()</code></td>
+<td align="left">imports Stata files (provided by the <code>haven</code> package)</td>
+</tr>
+<tr class="odd">
 <td align="left"><code>View()</code></td>
 <td align="left">opens a spreadsheet-style data viewer</td>
 </tr>
 </table>
+
+<ul>
+<li><a href='https://cran.r-project.org/doc/manuals/r-devel/R-data.html' title=''>R Data Import/Export</a> manual</li>
+</ul>
 
 </article></slide><slide class=''><hgroup><h2>Break</h2></hgroup><article  id="break" class="smaller flexbox vcenter">
 

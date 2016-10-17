@@ -1,8 +1,8 @@
 ## Session 2: Get me some data!
 
-######################
-## Built-in Data Sets #
-######################
+########################
+## Built-in Data Sets ##
+########################
 
 ## R built-in data sets
 data()
@@ -18,6 +18,7 @@ economics
 
 ## understand more behind the data
 ?economics
+
 
 
 ########################
@@ -50,9 +51,9 @@ View(facebook)
 
 
 
-#########################
-## Importing Excel Files #
-#########################
+###########################
+## Importing Excel Files ##
+###########################
 ## install.packages("readxl")
 library(readxl)
 
@@ -64,9 +65,9 @@ read_excel("../data/mydata.xlsx", sheet = "Sheet3", skip = 2)
 
 
 
-##############
-## YOUR TURN! #
-##############
+################
+## YOUR TURN! ##
+################
 ## 1. Read in the spreadsheet titled "3. Median HH income, metro" in the 
 ## "PEW Middle Class Data.xlsx" file
 read_excel("../data/PEW Middle Class Data.xlsx", 
@@ -84,8 +85,49 @@ View(pew)
 
 
 #########################
-## Scraping Online Files #
+## Importing SAS files ##
 #########################
+## install.packages("haven")
+library(haven)
+
+helpfromSAS <- read_sas("../data/help.sas7bdat")
+## Variable labels are stored in the "label" attribute of each variable
+str(helpfromSAS[, 1:2])
+
+## this dataset stores the SAS format for each variable
+path_iris_bdat <- system.file("examples", "iris.sas7bdat", package = "haven")
+iris_bdat <- read_sas(path_iris_bdat)
+str(iris_bdat)
+
+
+
+###########################
+## Importing Stata files ##
+###########################
+
+carsdataSTATA <- read_dta("../data/carsdata.dta")
+psych::describe(carsdataSTATA, skew = FALSE)
+
+carsdataSTATA$cars[1] <- NA
+write_dta(carsdataSTATA, path = "../data/carsdata_out.dta", version = 14)
+
+## NA values are read as NaN
+read_dta("../data/carsdata_out.dta")[1:3,]
+
+## this dataset stores a label and the Stata format for each variable
+## read_stata is equivalent to read_dta
+path_iris_dta <- system.file("examples", "iris.dta", package = "haven")
+iris_dta <- read_stata(path_iris_dta)
+str(iris_dta)
+
+## Older versions of Stata (13 and earlier) did not store the encoding used, and
+## you'll need to specify manually. A commonly used value is "Win 1252".
+
+
+
+###########################
+## Scraping Online Files ##
+###########################
 
 ## scraping text files
 url <- "https://www.data.gov/media/federal-agency-participation.csv" 
@@ -103,10 +145,25 @@ View(rents)
 
 
 
+################
+## YOUR TURN! ##
+################
+## 1. Download the file stored at: https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1
 
-#########################
-## Scraping SDMX Data   #
-#########################
+url <- "https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1"
+read.csv(url)
+
+## 2. Save it as an object titled reddit
+reddit <- read.csv(url)
+
+## 3. Take a peek at what this data looks like
+View(reddit)
+
+
+
+########################
+## Scraping SDMX Data ##
+########################
 
 library(RCurl)
 curl <- RCurl::getCurlHandle()
@@ -167,23 +224,50 @@ filecon <- file(csv_file)
 writeLines(text = tt, con = csv_file)
 close(filecon)
 
+
 read.csv(file = csv_file)
 
 
 
+#######################
+## curling REST APIs ##
+#######################
 
-##############
-## YOUR TURN! #
-##############
-## 1. Download the file stored at: https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1
+library(nsoApi)
+library(xts)
+library(dygraphs)
 
-url <- "https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1"
-read.csv(url)
+## first, we define the API URI and the dataset ID
+api <- "http://opendata.cbs.nl/ODataApi/OData/"
+DSD <- "82572ENG" # Input-Output: "83068ENG"
 
-## 2. Save it as an object titled reddit
-reddit <- read.csv(url)
+## next, we return the members of a dimension
+scheme <- "SectorBranchesSIC2008"
 
-## 3. Take a peek at what this data looks like
-View(reddit)
+## let's print the resulting REST query
+cbs_query <- cbsODataAPI(api=api, DSD=DSD, scheme=scheme, query=TRUE)
+cbs_query
 
+## we can view the query result in a browser
+browseURL(cbs_query)
+
+cbs_dimension <- cbsODataAPI(api=api, DSD=DSD, scheme=scheme, query=FALSE)
+head(cbs_dimension[, 1:2], 20)
+
+## finally, we return a dataset in wide format
+scheme <- "TypedDataSet"
+cbs_data <- cbsODataAPI(api=api, DSD=DSD, scheme=scheme, query=FALSE)
+cbs_data[1:10, 1:5]
+str(cbs_data)
+
+## convert to a long format
+cbs_df <- cbsOdataDFgather(cbs_data)
+str(cbs_df)
+
+## create time series object
+cbs_xts <- cbsOdataDFtoXTS(cbs_df)
+str(cbs_xts)
+
+## visualize time series
+dygraph(data = cbs_xts[, 1:5])
 

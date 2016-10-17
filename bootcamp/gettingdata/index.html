@@ -530,6 +530,30 @@ read.csv(text = tt)</pre>
 <li>few providers use latest standard of SDMX, making it difficult to develop tools</li>
 </ul>
 
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>curling REST APIs</h2></hgroup><article  id="curling-rest-apis" class="smaller ">
+
+</article></slide><slide class=''><hgroup><h2>curling REST APIs</h2></hgroup><article  id="curling-rest-apis-1" class="smaller ">
+
+<ul>
+<li>National Statistical Offices have started setting REST APIs for public data retrieval</li>
+<li>The majority of NSOs create their individual API and few use existing community standards</li>
+<li>The <a href='https://github.com/bowerth/nsoAPI' title=''><code>nsoApi</code></a> package provides functions to harmonize information into an R standard time series format</li>
+<li><a href='https://www.gitbook.com/read/book/bowerth/opendata-tables' title=''>opendata-tables</a> lists tables that can be retrieved from SDMX, PXWEB and other standards</li>
+<li>Some of the providers require registration, e.g. the BEA (USA) and ONS (UK)</li>
+<li>GENESIS (Germany) requires a paid subscription to access the REST API</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>library(nsoApi)
+
+cbs_data &lt;- cbsODataAPI(api=&quot;http://opendata.cbs.nl/ODataApi/OData/&quot;, DSD=&quot;82572ENG&quot;, scheme=&quot;TypedDataSet&quot;)</pre>
+
+<pre >##   ID SectorBranchesSIC2008  Periods OutputBasicPrices_1
+## 1  0                300025 1995JJ00              587866
+## 2  1                300025 1996JJ00              624009
+## 3  2                300025 1997JJ00              671992
+## 4  3                300025 1998JJ00              714756
+## 5  4                300025 1999JJ00              762732</pre>
+
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Key Things to Remember</h2></hgroup><article  id="key-things-to-remember" class="smaller ">
 
 </article></slide><slide class=''><hgroup><h2>Remember These Functions!</h2></hgroup><article  id="remember-these-functions" class="smaller ">

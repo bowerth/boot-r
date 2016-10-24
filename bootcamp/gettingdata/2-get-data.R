@@ -128,10 +128,17 @@ str(iris_dta)
 ###########################
 ## Scraping Online Files ##
 ###########################
+## configure proxy server
+library(RCurl)
+curl <- RCurl::getCurlHandle()
+curlSetOpt(.opts = list(proxy = "wsg-proxy.oecd.org:80"), curl = curl)
+## obtain from Internet Explorer LAN configuration or PAC automatic configuration script
 
 ## scraping text files
-url <- "https://www.data.gov/media/federal-agency-participation.csv" 
-data_gov <- read.csv(url)
+## url <- "https://www.data.gov/media/federal-agency-participation.csv"
+url <- "https://inventory.data.gov/dataset/f6f06df8-c102-4fe8-af31-c368be66166d/resource/d65072b5-08f0-4f90-bd57-65e731c59df2/download/userssharedsdfdata.govfederalagencyparticipation.csv"
+tt <- getURL(url = url, curl = curl)
+data_gov <- read.csv(text = tt)
 
 View(data_gov)
 
@@ -139,7 +146,9 @@ View(data_gov)
 library(gdata)
 
 url <- "http://www.huduser.org/portal/datasets/fmr/fmr2015f/FY2015F_4050_Final.xls"
-rents <- read.xls(url)
+tempfile <- tempfile(fileext = ".xls")
+download.file(url = url, mode = "wb", destfile = tempfile) #, method="curl")
+rents <- read.xls(xls = tempfile)
 
 View(rents)
 
@@ -151,10 +160,10 @@ View(rents)
 ## 1. Download the file stored at: https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1
 
 url <- "https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1"
-read.csv(url)
+tt <- getURL(url = url, curl = curl)
 
 ## 2. Save it as an object titled reddit
-reddit <- read.csv(url)
+reddit <- read.csv(text = tt)
 
 ## 3. Take a peek at what this data looks like
 View(reddit)
@@ -164,11 +173,6 @@ View(reddit)
 ########################
 ## Scraping SDMX Data ##
 ########################
-
-library(RCurl)
-curl <- RCurl::getCurlHandle()
-## curlSetOpt(.opts = list(proxy = "wsg-proxy.oecd.org:80"), curl = curl)
-## obtain from Internet Explorer LAN configuration or PAC automatic configuration script
 
 baseurl <- "http://sdmx.rdata.work"
 
@@ -210,7 +214,7 @@ http_response <- getURL(queryurl)
 
 ## export cached result to text string
 downloadurl <- file.path(baseurl, "getdownloadsdmx?")
-tt <- getURL(downloadurl)
+tt <- getURL(downloadurl, curl = curl)
 read.csv(text = tt)
 
 ## how many missing values?
@@ -228,12 +232,70 @@ close(filecon)
 read.csv(file = csv_file)
 
 
+## using RJSDMX
+
+## As a preliminary step, the package has to be loaded
+library(RJSDMX)
+
+## Help pages can be obtained in the usual way
+help(RJSDMX)
+
+## Get the list of **available data providers**:
+getProviders()
+
+## Get the list of available data flows for data provider **ECB**:
+getFlows('ECB')
+
+## If we want to refine the search with a search pattern
+getFlows('ECB', '*Exchange*')
+
+
+## Get the list of dimensions for data flows
+getDimensions('ECB', 'EXR')
+
+getDimensions("EUROSTAT", "nama_nace10_c")
+
+getDimensions("EUROSTAT", "nama_nace64_c")
+
+
+## As an alternative, we can explore all the metadata of interest with the graphical **SDMX helper**:
+sdmxHelp()
+
+## Finally, let's get some data
+## single time series, freq=A, CURRENCY=USD
+getTimeSeries('ECB', 'EXR.A.USD.EUR.SP00.A')
+
+getTimeSeries('EUROSTAT','nama_nace64_c.A.MIO_NAC.TOTAL.B1G.AT', start = "1970")
+
+
+## multiple time series, FREQUENCY=A (annual), all currencies
+getTimeSeries('ECB', 'EXR.A.*.EUR.SP00.A')
+
+
+## multiple time series, all currencies, freq = A or M (monthly)
+getTimeSeries('ECB', 'EXR.M+A.*.EUR.SP00.A')
+
+getTimeSeries('ECB','EXR.M.USD|GBP.EUR.SP00.A', start = "2010")
+
+getTimeSeries('ECB','EXR.Q.USD|GBP.EUR.SP00.A', start = "2010")
+
+getTimeSeries('ECB','EXR.A.USD|GBP.EUR.SP00.A', start = "2010")
+
+
+## get the codes of a dimension
+getCodes("EUROSTAT", "nama_nace10_c", "NACE_R2")
+
+getCodes("EUROSTAT", "nama_nace64_c", "NACE_R2")
+
+
+
 
 #######################
 ## curling REST APIs ##
 #######################
 
 library(nsoApi)
+library(magrittr)
 library(xts)
 library(dygraphs)
 
@@ -249,14 +311,14 @@ cbs_query <- cbsODataAPI(api=api, DSD=DSD, scheme=scheme, query=TRUE)
 cbs_query
 
 ## we can view the query result in a browser
-browseURL(cbs_query)
+## browseURL(cbs_query)
 
-cbs_dimension <- cbsODataAPI(api=api, DSD=DSD, scheme=scheme, query=FALSE)
+cbs_dimension <- cbsODataAPI(api=api, DSD=DSD, scheme=scheme, query=FALSE, curl = curl)
 head(cbs_dimension[, 1:2], 20)
 
 ## finally, we return a dataset in wide format
 scheme <- "TypedDataSet"
-cbs_data <- cbsODataAPI(api=api, DSD=DSD, scheme=scheme, query=FALSE)
+cbs_data <- cbsODataAPI(api=api, DSD=DSD, scheme=scheme, query=FALSE, curl = curl)
 cbs_data[1:10, 1:5]
 str(cbs_data)
 

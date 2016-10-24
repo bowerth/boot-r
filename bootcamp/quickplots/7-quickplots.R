@@ -6,7 +6,7 @@
 ####################
 # Notes: Graphs are created iteratively - run the following code one line at a time
 attach(mtcars)
-plot(wt, mpg) 
+plot(wt, mpg)
 abline(lm(mpg~wt))
 title("Regression of MPG on Weight")
 
@@ -15,13 +15,13 @@ title("Regression of MPG on Weight")
 #############
 # Data Used #
 #############
-# Notes: 
+# Notes:
 
 library(readxl)
-facebook <- read.delim("data/facebook.tsv")
-reddit <- read.csv("data/reddit.csv")
-race <- read.csv("data/race-comparison.csv")
-supermarket <- read_excel("data/Supermarket Transactions.xlsx", sheet = "Data")
+facebook <- read.delim("../data/facebook.tsv")
+reddit <- read.csv("../data/reddit.csv")
+race <- read.csv("../data/race-comparison.csv")
+supermarket <- read_excel("../data/Supermarket Transactions.xlsx", sheet = "Data")
 
 
 ###############
@@ -32,7 +32,7 @@ supermarket <- read_excel("data/Supermarket Transactions.xlsx", sheet = "Data")
 stripchart(mtcars$mpg)
 
 # change the type the point style w/pch
-stripchart(facebook$tenure, pch = 16)   
+stripchart(facebook$tenure, pch = 16)
 
 
 
@@ -41,10 +41,10 @@ stripchart(facebook$tenure, pch = 16)
 #############
 
 # default
-hist(facebook$tenure)     
+hist(facebook$tenure)
 
 # add different parameters to change breaks, color, title, etc.
-hist(facebook$tenure, breaks = 100, col = "grey", 
+hist(facebook$tenure, breaks = 100, col = "grey",
      main = "Facebook User Tenure", xlab = "Tenure (Days)")
 
 # get probabilities versus counts by entering probability = TRUE
@@ -57,12 +57,12 @@ hist(facebook$tenure, breaks = 100, col = "grey", probability = TRUE)
 x <- na.omit(facebook$tenure)
 
 ## create the histogram
-h <- hist(x, breaks = 100, col = "grey", main = "Facebook User Tenure", 
+h <- hist(x, breaks = 100, col = "grey", main = "Facebook User Tenure",
           xlab = "Tenure (Days)")
 
 ## create normal curve data
-xfit <- seq(min(x), max(x), length = 100) 
-yfit <- dnorm(xfit, mean = mean(x), sd = sd(x)) 
+xfit <- seq(min(x), max(x), length = 100)
+yfit <- dnorm(xfit, mean = mean(x), sd = sd(x))
 yfit <- yfit * diff(h$mids[1:2]) * length(x)
 
 ## add normal curve to the histogram
@@ -110,11 +110,11 @@ points(mean(mtcars$mpg), pch=18, col = "red")
 #############
 # Your Turn #
 #############
-# Using the facebook data visually assess the continous variables. 
+# Using the facebook data visually assess the continous variables.
 # What insights do you find?
 
 # Example 1 - age of users
-hist(facebook$age, breaks = 100, col = "grey", main = "Age of Facebook Users", 
+hist(facebook$age, breaks = 100, col = "grey", main = "Age of Facebook Users",
      xlab = "Age (Years)")
 
 # Example 2 - friend count of users
@@ -140,7 +140,7 @@ barplot(table(reddit$dog.cat))
 # names, color
 pets <- table(reddit$dog.cat)
 par(las = 1)
-barplot(pets, main = "Reddit User Animal Preferences", horiz = TRUE, 
+barplot(pets, main = "Reddit User Animal Preferences", horiz = TRUE,
         names.arg = c("Cats", "Dogs", "Turtles"), col = 'cyan')
 
 # plot this data
@@ -169,7 +169,7 @@ dotchart(state$n, labels = state$state, cex = .7)
 #############
 # Your Turn #
 #############
-# Using the Reddit data... 
+# Using the Reddit data...
 
 # 1) assess the frequency of education levels
 reddit_ed <- reddit %>%
@@ -205,7 +205,7 @@ par(mar = c(5, 4, 4, 2))
 plot(x = race$White_unemployment, y = race$Black_unemployment)
 plot(x = race$Black_unemployment, y = race$black_college)
 
-# you can fit lines to the scatter plot to assess its linearity; note that you 
+# you can fit lines to the scatter plot to assess its linearity; note that you
 # need to use "~" rather than "x =" and "y ="
 plot(White_unemployment ~ Black_unemployment, data = race)
 abline(lm(White_unemployment ~ Black_unemployment, data = race), col = "red")
@@ -213,7 +213,7 @@ lines(lowess(race$White_unemployment ~ race$Black_unemployment), col = "blue")
 
 # quickly assess multiple scatter plots with pairs()
 pairs(race)
-pairs(race[, c("White_unemployment", "Black_unemployment", 
+pairs(race[, c("White_unemployment", "Black_unemployment",
                "white_college", "black_college")])
 
 
@@ -223,7 +223,7 @@ pairs(race[, c("White_unemployment", "Black_unemployment",
 # Notes:
 
 # apply different "type = ?" for line, step, and line-point charts
-## turn this default to a line chart using "type = ?" 
+## turn this default to a line chart using "type = ?"
 plot(x = race$Year, y = race$black_college)
 
 ## how about a step chart
@@ -233,13 +233,13 @@ plot(x = race$Year, y = race$black_college)
 plot(x = race$Year, y = race$black_college)
 
 
-# you can plot multiple lines on a chart 
+# you can plot multiple lines on a chart
 plot(x = race$Year, y = race$Black_hs, type = "l", ylim = c(0, max(race$Black_hs)))
 lines(x = race$Year, y = race$black_college, col = "red")
 lines(x = race$Year, y = race$Black_unemployment, col = "blue", lty = 2)
 
 # and you probably want to add a legend
-legend("topleft", legend = c("HS Rate", "College Rate", "Unemployment"), 
+legend("topleft", legend = c("HS Rate", "College Rate", "Unemployment"),
        col = c("black", "red", "blue"), lty = c(1, 1, 2))
 
 
@@ -261,7 +261,7 @@ boxplot(Revenue ~ Gender + `Marital Status`, data = supermarket)
 #############
 # Your Turn #
 #############
-# Using the supermarket data analyze revenue by date, homeownership, city, product 
+# Using the supermarket data analyze revenue by date, homeownership, city, product
 # family, etc.  Don't forget you can summarize the data using dplyr like you
 # learned about earlier...example:
 
@@ -313,7 +313,7 @@ barplot(Q1, beside = TRUE, legend.text = TRUE)
 
 
 # 2) annual income by homeownership
-supermarket$`Annual Income` <- factor(supermarket$`Annual Income`, 
+supermarket$`Annual Income` <- factor(supermarket$`Annual Income`,
                                       levels = c("$10K - $30K", "$30K - $50K",
                                                  "$50K - $70K", "$70K - $90K",
                                                  "$90K - $110K", "$110K - $130K",
@@ -321,7 +321,7 @@ supermarket$`Annual Income` <- factor(supermarket$`Annual Income`,
 
 Q2 <- prop.table(table(supermarket$`Annual Income`, supermarket$Homeowner))
 
-barplot(Q2, legend.text = TRUE, 
+barplot(Q2, legend.text = TRUE,
         args.legend = list(x = "topleft", cex = 1, bty = "n", y.intersp=1.5))
 
 # 3) country by gender
@@ -331,8 +331,3 @@ barplot(Q3, beside = TRUE, legend.text = c("Female", "Male"), col = c("pink", "b
         args.legend = list(x = "topleft", cex = 1.5, bty = "n", y.intersp=1.5))
 
 # 4) etc.
-
-
-
-
-

@@ -9,10 +9,10 @@ library(readxl)
 library(dplyr)
 
 # data used
-supermarket <- read_excel("data/Supermarket Transactions.xlsx", sheet = "Data")
-facebook <- read.delim("data/facebook.tsv")
-reddit <- read.csv("data/reddit.csv")
-race <- read.csv("data/race-comparison.csv")
+supermarket <- read_excel("../data/Supermarket Transactions.xlsx", sheet = "Data")
+facebook <- read.delim("../data/facebook.tsv")
+reddit <- read.csv("../data/reddit.csv")
+race <- read.csv("../data/race-comparison.csv")
 mpg
 
 
@@ -231,6 +231,7 @@ prod_revenue <- supermarket %>%
 
 ggplot(prod_revenue, aes(`Purchase Date`, Revenue, color = `Product Family`)) +
         geom_line(alpha = .2) +
+        scale_color_manual(values = c("#4f81bd", "#8cc841", "#c0504d")) +
         geom_smooth(se = FALSE, span = .1)
 
 
@@ -382,10 +383,10 @@ p + theme_minimal()
 p + theme_dark()
 
 # add some parameters to the theme() function to adjust how the graphic looks
-basic + theme_minimal() +
+p + theme_minimal() +
         theme(
-                text = element_text(family = "Georgia"),
-                plot.title = element_text(face = "bold", size = 16), 
+                text = element_text(family = "Times"), # Georgia
+                plot.title = element_text(face = "bold", size = 16),
                 legend.position = "top",
                 axis.ticks = element_line(colour = "grey70", size = 0.2),
                 panel.grid.major.y = element_line(linetype = "dashed", color = "darkgray"),

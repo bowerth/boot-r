@@ -1,12 +1,12 @@
 # Download the most recent Occupational Employment Statistics data (May 2015)
-# from https://www.dropbox.com/s/5cagoqaa67uix3e/all_data_M_2015.xlsx?dl=0
+# from https://dl.dropboxusercontent.com/u/1807228/all_data_M_2015.xlsx?dl=1
 
 library(readxl)
 library(dplyr)
 library(ggplot2)
 library(ggthemes)
 
-oes <- read_excel("~/Dropbox/Academia/University of Cincinnati/Case Studies/Occupational Employment Stats/all_data_M_2015.xlsx", sheet = 'All May 2015 Data')
+oes <- read_excel("all_data_M_2015.xlsx", sheet = 'All May 2015 Data')
 
 
 
@@ -54,9 +54,11 @@ ggplot(top25_emp, aes(tot_emp, `occ title`)) +
         theme_minimal() +
         theme(text = element_text(family = "Georgia"),
               axis.title.x = element_text(margin = margin(t = 15)),
-              plot.title = element_text(size = 18, margin = margin(b = 10)),
-              plot.subtitle = element_text(size = 12, color = "darkslategrey", margin = margin(b = 25)),
-              plot.caption = element_text(size = 8, margin = margin(t = 10), color = "grey70"))
+              plot.title = element_text(size = 18, margin = margin(b = 10))
+             ## ,
+              ## plot.subtitle = element_text(size = 12, color = "darkslategrey", margin = margin(b = 25)),
+              ## plot.caption = element_text(size = 8, margin = margin(t = 10), color = "grey70")
+              )
 
 
 
@@ -82,8 +84,10 @@ ggplot(top25_salary, aes(a_median, `occ title`)) +
         theme_minimal() +
         theme(text = element_text(family = "Georgia"),
               axis.title.x = element_text(margin = margin(t = 15)),
-              plot.title = element_text(size = 18, margin = margin(b = 10)),
-              plot.subtitle = element_text(size = 12, color = "darkslategrey", margin = margin(b = 25)),
-              plot.caption = element_text(size = 8, margin = margin(t = 10), color = "grey70"))
+              plot.title = element_text(size = 18, margin = margin(b = 10))
+             ## ,
+             ##  plot.subtitle = element_text(size = 12, color = "darkslategrey", margin = margin(b = 25)),
+             ##  plot.caption = element_text(size = 8, margin = margin(t = 10), color = "grey70")
+              )
 
 

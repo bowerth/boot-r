@@ -12,7 +12,8 @@ library(dplyr)
 library(tidyr)
 
 ## Set working directory
-path <- file.path(dbpath, "GitHub", "jekyll", "sti", "extras", "brew_report_stri")
+## path <- file.path(dbpath, "GitHub", "jekyll", "sti", "extras", "brew_report_stri")
+path <- getwd()
 path.Rmd <- file.path(path, "Rmd") # Rnw and tex files are created here
 path.rmd <- file.path(path, "md")
 setwd(path)
@@ -95,16 +96,16 @@ results <- sapply(seeds, create.report)
 ## results <- sapply(seeds, create.report.pdf)
 
 
-## Include output in jekyll site
-for (file in list.files(file.path(path, "md"))) {
-  file.copy(from = file.path(path, "md", file), to = file.path(dbpath, "GitHub", "jekyll", "industry", file), overwrite = TRUE)
-}
-##
-if (Sys.info()["sysname"]=="Windows") {
-    system(paste0('xcopy "', file.path(path, "figures", "report_stri"), '" "', file.path(dbpath, "GitHub", "jekyll", "sti", "figures", "report_stri"), '" /e /Y'))
-} else {
-    system(paste('cp -r', file.path(path, "figures", "report_stri"), file.path(dbpath, "GitHub", "jekyll", "sti", "figures")))
-}
+# ## Include output in jekyll site
+# for (file in list.files(file.path(path, "md"))) {
+#   file.copy(from = file.path(path, "md", file), to = file.path(dbpath, "GitHub", "jekyll", "industry", file), overwrite = TRUE)
+# }
+
+# if (Sys.info()["sysname"]=="Windows") {
+#     system(paste0('xcopy "', file.path(path, "figures", "report_stri"), '" "', file.path(dbpath, "GitHub", "jekyll", "sti", "figures", "report_stri"), '" /e /Y'))
+# } else {
+#     system(paste('cp -r', file.path(path, "figures", "report_stri"), file.path(dbpath, "GitHub", "jekyll", "sti", "figures")))
+# }
 
 
 #########################

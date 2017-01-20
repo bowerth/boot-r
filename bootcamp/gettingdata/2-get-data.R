@@ -26,11 +26,11 @@ economics
 ########################
 
 ## importing text files
-read.csv("../data/mydata.csv")
-read.delim("../data/mydata.txt")
+read.csv("data/mydata.csv")
+read.delim("data/mydata.txt")
 
 ## assign data to new object
-mydata <- read.delim("../data/mydata.tsv")
+mydata <- read.delim("data/mydata.tsv")
 mydata
 
 View(mydata)
@@ -41,10 +41,10 @@ View(mydata)
 ## YOUR TURN! #
 ##############
 ## 1. Read in the facebook.tsv file in the data folder
-head(read.delim("../data/facebook.tsv"))
+head(read.delim("data/facebook.tsv"))
 
 ## 2. Read in and save the facebook.tsv file as an object titled facebook
-facebook <- read.delim("../data/facebook.tsv")
+facebook <- read.delim("data/facebook.tsv")
 
 ## 3. Take a peek at what this data looks like
 View(facebook)
@@ -57,11 +57,11 @@ View(facebook)
 ## install.packages("readxl")
 library(readxl)
 
-read_excel("../data/mydata.xlsx", sheet = "Sheet5")
+read_excel("data/mydata.xlsx", sheet = "Sheet5")
 
 ## people love to make notes at the top of Excel files
-read_excel("../data/mydata.xlsx", sheet = "Sheet3")
-read_excel("../data/mydata.xlsx", sheet = "Sheet3", skip = 2)
+read_excel("data/mydata.xlsx", sheet = "Sheet3")
+read_excel("data/mydata.xlsx", sheet = "Sheet3", skip = 2)
 
 
 
@@ -70,12 +70,12 @@ read_excel("../data/mydata.xlsx", sheet = "Sheet3", skip = 2)
 ################
 ## 1. Read in the spreadsheet titled "3. Median HH income, metro" in the 
 ## "PEW Middle Class Data.xlsx" file
-read_excel("../data/PEW Middle Class Data.xlsx", 
+read_excel("data/PEW Middle Class Data.xlsx", 
            sheet = "3. Median HH income, metro", 
            skip = 5)
 
 ## 2. Save it as an object titled pew
-pew <- read_excel("../data/PEW Middle Class Data.xlsx", 
+pew <- read_excel("data/PEW Middle Class Data.xlsx", 
                   sheet = "3. Median HH income, metro", 
                   skip = 5)
 
@@ -90,7 +90,7 @@ View(pew)
 ## install.packages("haven")
 library(haven)
 
-helpfromSAS <- read_sas("../data/help.sas7bdat")
+helpfromSAS <- read_sas("data/help.sas7bdat")
 ## Variable labels are stored in the "label" attribute of each variable
 str(helpfromSAS[, 1:2])
 
@@ -105,14 +105,14 @@ str(iris_bdat)
 ## Importing Stata files ##
 ###########################
 
-carsdataSTATA <- read_dta("../data/carsdata.dta")
+carsdataSTATA <- read_dta("data/carsdata.dta")
 psych::describe(carsdataSTATA, skew = FALSE)
 
 carsdataSTATA$cars[1] <- NA
-write_dta(carsdataSTATA, path = "../data/carsdata_out.dta", version = 14)
+write_dta(carsdataSTATA, path = "data/carsdata_out.dta", version = 14)
 
 ## NA values are read as NaN
-read_dta("../data/carsdata_out.dta")[1:3,]
+read_dta("data/carsdata_out.dta")[1:3,]
 
 ## this dataset stores a label and the Stata format for each variable
 ## read_stata is equivalent to read_dta
@@ -131,7 +131,7 @@ str(iris_dta)
 ## configure proxy server
 library(RCurl)
 curl <- RCurl::getCurlHandle()
-curlSetOpt(.opts = list(proxy = "wsg-proxy.oecd.org:80"), curl = curl)
+## curlSetOpt(.opts = list(proxy = "wsg-proxy.oecd.org:80"), curl = curl)
 ## obtain from Internet Explorer LAN configuration or PAC automatic configuration script
 
 ## scraping text files
@@ -222,7 +222,7 @@ dat <- read.csv(text = tt)
 table(is.na(dat))
 
 ## write to disk
-csv_file <- "../data/sdmxwide.csv"
+csv_file <- "data/sdmxwide.csv"
 
 filecon <- file(csv_file)
 writeLines(text = tt, con = csv_file)
@@ -259,7 +259,7 @@ getDimensions("EUROSTAT", "nama_nace64_c")
 
 
 ## As an alternative, we can explore all the metadata of interest with the graphical **SDMX helper**:
-sdmxHelp()
+## sdmxHelp()
 
 ## Finally, let's get some data
 ## single time series, freq=A, CURRENCY=USD

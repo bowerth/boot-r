@@ -9,7 +9,7 @@ permalink: /r_bootcamp
 
 ### Instructor
 
-  * [Bo Werth](http://github.com/bowerth/)
+  * [Bo Werth](http://gh.rdata.work/)
 
 
 ### Class Information
@@ -64,8 +64,28 @@ You can download the required classroom material here: &nbsp; <a href="https://d
 | 10 | Case study | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="bootcamp/case_studies/10-case-study-2.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp; <a href="https://dl.dropboxusercontent.com/u/1807228/all_data_M_2015.xlsx?dl=1" style="color:black;"><i class="fa fa-database" aria-hidden="true"></i></a> |
 
 
+### Hands-on Practice
 
+#### Starting R
 
+<!-- Portable version -->
+<!-- :   Start RStudio from `\\asap1\em_apps$\R` -->
 
+<!-- OECD R Server -->
+<!-- :   Log on to server, start RStudio and set R installation:   -->
+<!-- 	`\\\\asap1\\em_apps\$\\R\\R-3.3.1` -->
 
+<!-- `setwd("T:/DKI/rtrainings/bootcamp/code-scripts")` -->
+
+Cloud Server
+: Open &nbsp; <a href="http://rstudio.rdata.work:8787/" style="color:black;"><i
+  class="fa fa-cloud" aria-hidden="true"></i></a> &nbsp; in Google Chrome
+
+Private device 
+: Participants can follow the exercises using their personal devices. When using
+  a local R installation, not all examples can be executed without installation
+  of additional packages. The package install R script is available at &nbsp; <a
+  href="https://dl.dropboxusercontent.com/u/1807228/install-packages.R?dl=1"
+  style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a>
+  &nbsp; The package installation can take up to 10 minutes.
 

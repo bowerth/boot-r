@@ -33,7 +33,7 @@ storms %>% select(storm, pressure)
 ## YOUR TURN!
 ##############
 ## Import the facebook.tsv file in the data folder
-facebook <- read.delim("../data/facebook.tsv")
+facebook <- read.delim("data/facebook.tsv")
 
 ## Create a new data frame that includes: userid, age, gender, friend_count
 facebook2 <- facebook %>% select(userid, age, gender, friend_count)
@@ -265,8 +265,8 @@ a %>% anti_join(b, by = "x1")
 ## YOUR TURN!
 ##############
 ## 1. Import the reddit.csv and regions.csv files in the data folder
-reddit <- read.csv("../data/reddit.csv", stringsAsFactors = FALSE)
-regions <- read.csv("../data/regions.csv", stringsAsFactors = FALSE)
+reddit <- read.csv("data/reddit.csv", stringsAsFactors = FALSE)
+regions <- read.csv("data/regions.csv", stringsAsFactors = FALSE)
 
 
 ## 2. Join the regions data to the reddit data

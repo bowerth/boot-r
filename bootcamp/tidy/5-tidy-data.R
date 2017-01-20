@@ -7,7 +7,7 @@
 # install.packages("tidyr")
 # install.packages("dplyr")
 # install.packages("devtools")
-devtools::install_github("rstudio/EDAWR")
+# devtools::install_github("rstudio/EDAWR")
 
 library(tidyr)
 library(dplyr)  # to illustrate pipe function

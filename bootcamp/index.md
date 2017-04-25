@@ -90,3 +90,18 @@ setwd("T:/DKI/rtrainings/bootcamp/code-scripts")
   <!-- style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> -->
   <!-- &nbsp; The package installation can take up to 10 minutes. -->
 
+### Agenda
+
+| Time  | Item             | Duration (min) |
+|:-----:|:-----------------|---------------:|
+| 9h30  | Setting up PCs   |             30 |
+| 10h00 | Slide Deck       |             45 |
+| 10h45 | Coffee Break     |             15 |
+| 11h00 | Slide Deck       |             45 |
+| 11h45 | Practice Session |             30 |
+| 12h15 | Lunch Break      |             75 |
+| 13h30 | Slide Deck       |             45 |
+| 14h15 | Practice Session |             60 |
+| 15h00 | Break            |             30 |
+| 15h30 | Pair Coding      |             60 |
+| 16h30 | Discussion       |             30 |

@@ -82,11 +82,11 @@ setwd("T:/DKI/rtrainings/bootcamp/code-scripts")
 <!-- : Open &nbsp; <a href="http://rstudio.rdata.work:8787/" style="color:black;"><i -->
   <!-- class="fa fa-cloud" aria-hidden="true"></i></a> &nbsp; in Google Chrome -->
 
-Private device 
-: Participants can follow the exercises using their personal devices. When using
-  a local R installation, not all examples can be executed without installation
-  of additional packages. The package install R script is available at &nbsp; <a
-  href="https://dl.dropboxusercontent.com/u/1807228/install-packages.R?dl=1"
-  style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a>
-  &nbsp; The package installation can take up to 10 minutes.
+<!-- Private device  -->
+<!-- : Participants can follow the exercises using their personal devices. When using -->
+  <!-- a local R installation, not all examples can be executed without installation -->
+  <!-- of additional packages. The package install R script is available at &nbsp; <a -->
+  <!-- href="https://dl.dropboxusercontent.com/u/1807228/install-packages.R?dl=1" -->
+  <!-- style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> -->
+  <!-- &nbsp; The package installation can take up to 10 minutes. -->
 

@@ -7,16 +7,35 @@
 ## R built-in data sets
 data()
 
+## view whole dataset console
 mtcars
-iris
-USArrests
+
+## browse interactively
+View(mtcars)
+
+## view first 6 rows
+head(iris)
+
+## create custom function
+head1 <- function(x) head(x, n = 10L)
+head1(iris)
+
+## data structure: many variables, nested lists 
+str(USArrests)
 
 ## package built-in data sets
 library(ggplot2)
 data(economics)
+
+## stored in tibble format
 economics
 
+## convert to traditional data.frame
+economicsdf <- data.frame(economics)
+class(economicsdf)
+
 ## understand more behind the data
+## dataset documentation shows as help (if exists)
 ?economics
 
 
@@ -25,15 +44,17 @@ economics
 ## Importing Text Files #
 ########################
 
-## importing text files
+## importing text files (comma-separated)
 read.csv("data/mydata.csv")
+
+## importing text files (tab-separated)
 read.delim("data/mydata.txt")
 
-## assign data to new object
-mydata <- read.delim("data/mydata.tsv")
-mydata
-
-View(mydata)
+# ## assign data to new object
+# mydata <- read.delim("data/mydata.tsv")
+# mydata
+# 
+# View(mydata)
 
 
 
@@ -60,8 +81,11 @@ library(readxl)
 read_excel("data/mydata.xlsx", sheet = "Sheet5")
 
 ## people love to make notes at the top of Excel files
-read_excel("data/mydata.xlsx", sheet = "Sheet3")
-read_excel("data/mydata.xlsx", sheet = "Sheet3", skip = 2)
+sheet3 <- read_excel("data/mydata.xlsx", sheet = "Sheet3")
+View(sheet3)
+
+sheet3_skip <- read_excel("data/mydata.xlsx", sheet = "Sheet3", skip = 2)
+View(sheet3_skip)
 
 
 
@@ -70,16 +94,11 @@ read_excel("data/mydata.xlsx", sheet = "Sheet3", skip = 2)
 ################
 ## 1. Read in the spreadsheet titled "3. Median HH income, metro" in the 
 ## "PEW-Middle-Class-Data.xlsx" file
-read_excel("data/PEW-Middle-Class-Data.xlsx", 
-           sheet = "3. Median HH income, metro", 
-           skip = 5)
-
 ## 2. Save it as an object titled pew
+## 3. Take a peek at what this data looks like
 pew <- read_excel("data/PEW-Middle-Class-Data.xlsx", 
                   sheet = "3. Median HH income, metro", 
                   skip = 5)
-
-## 3. Take a peek at what this data looks like
 View(pew)
 
 
@@ -99,6 +118,12 @@ path_iris_bdat <- system.file("examples", "iris.sas7bdat", package = "haven")
 iris_bdat <- read_sas(path_iris_bdat)
 str(iris_bdat)
 
+## re-export to SAS format is not mature
+write_sas(iris_bdat, path = "data/iris.sas7bdat")
+
+## this produces a file 10x larger
+file.info(path_iris_bdat)
+file.info("data/iris.sas7bdat")
 
 
 ###########################
@@ -159,7 +184,8 @@ View(rents)
 ################
 ## 1. Download the file stored at: https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1
 
-url <- "https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1"
+# url <- "https://dl.dropboxusercontent.com/u/1807228/reddit.csv?dl=1"
+url <- "https://s3.eu-central-1.amazonaws.com/rbootcamp/reddit.csv"
 tt <- getURL(url = url, curl = curl)
 
 ## 2. Save it as an object titled reddit
@@ -204,8 +230,7 @@ f <- config2
 
 query <- file.path(f$provider, paste0(f$flow, ".", f$dimensions), f$parameters)
 queryurl <- file.path(baseurl, query)
-
-## queryurl
+queryurl
 ## [1] "http://fast-waters-66121.herokuapp.com/INSEE/CNA-2005-FBCF-SI-A17.S11ES14AA.*.IPCH/?start=1980"
 ## browseURL(url = queryurl)
 
@@ -215,20 +240,21 @@ http_response <- getURL(queryurl)
 ## export cached result to text string
 downloadurl <- file.path(baseurl, "getdownloadsdmx?")
 tt <- getURL(downloadurl, curl = curl)
-read.csv(text = tt)
+
+## read from text string
+dat <- read.csv(text = tt)
+View(dat)
 
 ## how many missing values?
-dat <- read.csv(text = tt)
 table(is.na(dat))
 
-## write to disk
+## write text string to file on disk
 csv_file <- "data/sdmxwide.csv"
 
 filecon <- file(csv_file)
 writeLines(text = tt, con = csv_file)
 close(filecon)
-
-
+## load from local file path
 read.csv(file = csv_file)
 
 
@@ -238,7 +264,7 @@ read.csv(file = csv_file)
 library(RJSDMX)
 
 ## Help pages can be obtained in the usual way
-help(RJSDMX)
+## help(RJSDMX)
 
 ## Get the list of **available data providers**:
 getProviders()

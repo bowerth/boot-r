@@ -58,8 +58,9 @@ You can download the required classroom material here: &nbsp; <a href="https://d
 | 6 | Transforming & manipulating data made easy | <a href="bootcamp/6-dplyr-data" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/6-dplyr-data/6-dplyr-data.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 | 7 | Quick plots for early exploratory data analysis | <a href="bootcamp/7-quickplots" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/7-quickplots/7-quickplots.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 | 8 | Advanced plotting with ggplot | <a href="bootcamp/8-ggplot" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/8-ggplot/8-ggplot.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-| 9 | Case study 1: TiVA Country Notes | <a href="http://sti.rdata.work/report_icio_tiva_AUT.html" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="http://countrynote.rdata.work/articles/countrynote.html" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp; <a href="https://github.com/bowerth/countrynote" style="color:black;"><i class="fa fa-database" aria-hidden="true"></i></a> |
-| 10 | Case study 2: scraping pap.fr | <a href="http://estate.rdata.work/articles/estate.html" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="https://raw.githubusercontent.com/bowerth/estate/master/vignettes/estate.Rmd" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp; <a href="https://github.com/bowerth/estate" style="color:black;"><i class="fa fa-database" aria-hidden="true"></i></a> |
+
+<!-- | 9 | Case study 1: TiVA Country Notes | <a href="http://sti.rdata.work/report_icio_tiva_AUT.html" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="http://countrynote.rdata.work/articles/countrynote.html" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp; <a href="https://github.com/bowerth/countrynote" style="color:black;"><i class="fa fa-database" aria-hidden="true"></i></a> | -->
+<!-- | 10 | Case study 2: scraping pap.fr | <a href="http://estate.rdata.work/articles/estate.html" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="https://raw.githubusercontent.com/bowerth/estate/master/vignettes/estate.Rmd" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp; <a href="https://github.com/bowerth/estate" style="color:black;"><i class="fa fa-database" aria-hidden="true"></i></a> | -->
 
 
 ### Hands-on Practice
@@ -73,7 +74,9 @@ OECD R Server
 :   Log on to server `AS-GEN-1`, start RStudio and set R installation:  
 	`\\\\asap1\\em_apps\$\\R\\R-3.3.1`
 
-`setwd("T:/DKI/rtrainings/bootcamp/code-scripts")`
+~~~
+setwd("T:/DKI/rtrainings/bootcamp/code-scripts")
+~~~
 
 <!-- Cloud Server -->
 <!-- : Open &nbsp; <a href="http://rstudio.rdata.work:8787/" style="color:black;"><i -->

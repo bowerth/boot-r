@@ -1,25 +1,24 @@
 ---
 id: 1834
 title: Course&#58; Intro to R Bootcamp
-date: 2016-10-02
+date: 2017-02-01
 author: Bo Werth
 layout: page
 permalink: /r_bootcamp
 ---
 
-### Instructor
-
-  * [Bo Werth](http://gh.rdata.work/)
-
 
 ### Class Information
 
 * R Programming I - Overview
-1* R Programming II - Graphics
-* Date: 1 February 2017
-* Location: OECD, Paris, France
-* Webpage: [boot.rdata.work/r_bootcamp](http://boot.rdata.work/r_bootcamp)
-* Additional Resources: [http://github.com/bowerth/boot-r](http://github.com/bowerth/boot-r)
+* Date: 26 April 2017
+
+* R Programming II - Graphics
+* Date: 4 May 2017
+
+<!-- * Location: OECD, Paris, France -->
+<!-- * Webpage: [boot.rdata.work/r_bootcamp](http://boot.rdata.work/r_bootcamp) -->
+<!-- * Additional Resources: [http://github.com/bowerth/boot-r](http://github.com/bowerth/boot-r) -->
 
 ### Course Description 
 
@@ -48,7 +47,6 @@ You can download the required classroom material here: &nbsp; <a href="https://d
 
 ### Schedule
 
-<!-- &nbsp; <a href="https://www.dropbox.com/sh/u90143yxi8frjc6/AACabxoBFwxHBGu1PH9fTEkDa?dl=1" style="color:black;"><i class="fa fa-database" aria-hidden="true"></i></a> -->
 
 | Session | Description | Resources | 
 |:---:|---|:---:|
@@ -68,18 +66,18 @@ You can download the required classroom material here: &nbsp; <a href="https://d
 
 #### Starting R
 
-<!-- Portable version -->
-<!-- :   Start RStudio from `\\asap1\em_apps$\R` -->
+Portable version
+:   Start RStudio from `\\asap1\em_apps$\R`
 
-<!-- OECD R Server -->
-<!-- :   Log on to server, start RStudio and set R installation:   -->
-<!-- 	`\\\\asap1\\em_apps\$\\R\\R-3.3.1` -->
+OECD R Server
+:   Log on to server `AS-GEN-1`, start RStudio and set R installation:  
+	`\\\\asap1\\em_apps\$\\R\\R-3.3.1`
 
-<!-- `setwd("T:/DKI/rtrainings/bootcamp/code-scripts")` -->
+`setwd("T:/DKI/rtrainings/bootcamp/code-scripts")`
 
-Cloud Server
-: Open &nbsp; <a href="http://rstudio.rdata.work:8787/" style="color:black;"><i
-  class="fa fa-cloud" aria-hidden="true"></i></a> &nbsp; in Google Chrome
+<!-- Cloud Server -->
+<!-- : Open &nbsp; <a href="http://rstudio.rdata.work:8787/" style="color:black;"><i -->
+  <!-- class="fa fa-cloud" aria-hidden="true"></i></a> &nbsp; in Google Chrome -->
 
 Private device 
 : Participants can follow the exercises using their personal devices. When using

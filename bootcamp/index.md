@@ -42,7 +42,7 @@ The two in-class sessions will consist of both lectures, live coding by the inst
 
 
 ### Material
-You can download the required classroom material here: &nbsp; <a href="https://dl.dropboxusercontent.com/u/1807228/bootcamp.zip?dl=1" style="color:black;"><i class="fa fa-folder-open" style="font-size:1em"></i></a>.  In this file you will find the slides, data, and initial code scripts that we will go through in class.
+You can download the required classroom material here: &nbsp; <a href="http://rbootcamp.s3.amazonaws.com//bootcamp.zip" style="color:black;"><i class="fa fa-folder-open" style="font-size:1em"></i></a>.  In this file you will find the slides, data, and initial code scripts that we will go through in class.
 
 
 ### Schedule
@@ -91,18 +91,13 @@ setwd("T:/DKI/rtrainings/bootcamp/code-scripts")
   <!-- style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> -->
   <!-- &nbsp; The package installation can take up to 10 minutes. -->
 
-### Agenda
+### Time Structure
 
-| Time  | Item             | Duration (min) |
-|:-----:|:-----------------|---------------:|
-| 9h30  | Setting up PCs   |             30 |
-| 10h00 | Slide Deck       |             45 |
-| 10h45 | Coffee Break     |             15 |
-| 11h00 | Slide Deck       |             45 |
-| 11h45 | Practice Session |             30 |
-| 12h15 | Lunch Break      |             75 |
-| 13h30 | Slide Deck       |             45 |
-| 14h15 | Practice Session |             60 |
-| 15h00 | Break            |             30 |
-| 15h30 | Pair Coding      |             60 |
-| 16h30 | Discussion       |             30 |
+| Time  | Item             |
+|------:|:-----------------|
+|  9h30 | Begin Morning    |
+| 11h00 | Morning Break    |
+| 12h30 | Lunch Break      |
+| 13h30 | Begin Afternoon  |
+| 15h30 | Afternoon Break  |
+| 17h00 | End              |

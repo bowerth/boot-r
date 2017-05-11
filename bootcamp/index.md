@@ -79,18 +79,7 @@ OECD R Server
 setwd("T:/DKI/rtrainings/bootcamp/code-scripts")
 ~~~
 
-<!-- Cloud Server -->
-<!-- : Open &nbsp; <a href="http://rstudio.rdata.work:8787/" style="color:black;"><i -->
-  <!-- class="fa fa-cloud" aria-hidden="true"></i></a> &nbsp; in Google Chrome -->
-
-<!-- Private device  -->
-<!-- : Participants can follow the exercises using their personal devices. When using -->
-  <!-- a local R installation, not all examples can be executed without installation -->
-  <!-- of additional packages. The package install R script is available at &nbsp; <a -->
-  <!-- href="https://dl.dropboxusercontent.com/u/1807228/install-packages.R?dl=1" -->
-  <!-- style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> -->
-  <!-- &nbsp; The package installation can take up to 10 minutes. -->
-
+<!-- 
 ### Time Structure
 
 | Time  | Item             |
@@ -101,3 +90,47 @@ setwd("T:/DKI/rtrainings/bootcamp/code-scripts")
 | 13h30 | Begin Afternoon  |
 | 15h30 | Afternoon Break  |
 | 17h00 | End              |
+ -->
+
+### Links
+
+#### ggplot
+
+- [docs.ggplot2.org](http://docs.ggplot2.org/)
+- [Function reference • ggplot2](http://ggplot2.tidyverse.org/reference/)
+- [ggplot2 extensions](http://www.ggplot2-exts.org/)
+- [github: metrumresearchgroup/ggedit](https://github.com/metrumresearchgroup/ggedit)
+- [The ggedit gitbook](https://metrumresearchgroup.github.io/ggedit/)
+- [github: jrnold/ggthemes](https://github.com/jrnold/ggthemes)
+- [github: cttobin/ggthemr](https://github.com/cttobin/ggthemr)
+- [github: davidgohel/ggiraph](https://github.com/davidgohel/ggiraph)
+- [ggplot2 – Multiple Plots in One Graph Using gridExtra](http://lightonphiri.org/blog/ggplot2-multiple-plots-in-one-graph-using-gridextra)
+- [Advanced R: Non-standard evaluation (NSE)](http://adv-r.had.co.nz/Computing-on-the-language.html)
+
+#### network analysis
+
+- [igraph.org](http://igraph.org/r/)
+- [github: christophergandrud/networkD3](https://github.com/christophergandrud/networkD3)
+
+#### R Package management
+
+- [r-pkgs.had.co.nz](http://r-pkgs.had.co.nz/)
+- [packrat](https://rstudio.github.io/packrat/)
+- [miniCRAN Introduction](https://cran.r-project.org/web/packages/miniCRAN/vignettes/miniCRAN-introduction.html)
+
+#### reporting
+
+- [rmarkdown.rstudio.com](http://rmarkdown.rstudio.com)
+- [pander package](http://rapporter.github.io/pander/)
+- [ReporteRs package](http://davidgohel.github.io/ReporteRs/)
+
+#### other links
+
+- [haven: semantics vignette](https://github.com/tidyverse/haven/blob/master/vignettes/semantics.Rmd)
+
+#### self-references
+
+- [Country Notes Revenue Statistics](https://oecd-ctp.github.io/cn-rs/)
+- [htmlwidgets: JavaScript in R](http://rdata.work/datascience/2015/09/13/r-htmlwidgets.html)
+- [Example Merging xts Time Series](http://rdata.work/datascience/2015/10/16/r-libor-tyc.html)
+- [Scraping real estate data from pap.fr](http://estate.rdata.work/articles/estate.html)

@@ -7,7 +7,7 @@ paginate_path: "page:num"
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
 permalink:     pretty
-exclude:       [import-html-bootcamp.sh]
+exclude:       [jekyll-serve.sh, import-html-bootcamp.sh, Makefile, import]
 # Setup
 title:         R Programming
 tagline:       ''

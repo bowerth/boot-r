@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="" />
+
+
+<title>CO2 Example</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/navigation-1.1/codefolding.js"></script>
+<link href="libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">CO2 Example</h1>
+
+</div>
+
+
+<div id="co2-productivity-vs.carbon-footprint" class="section level2">
+<h2>CO2 productivity vs. carbon footprint</h2>
+<pre class="r"><code>full_join(carbon.fp, green.growth, by=NULL) %&gt;%
+  filter(year==1995|year==2011) %&gt;%
+  ggplot(aes(x = CO2_PBPROD, y = co2.imports, color=OECD)) +
+  geom_point(size=5) +
+  geom_text_repel(aes(label=country), size = 3) +
+  geom_hline(yintercept = 0, color=&quot;darkred&quot;) +
+  labs(x = &quot;CO2 Productivity (USD per Kg of CO2)&quot;,
+       y = &quot;Net imports of embodied CO2 (Tonnes per capita)&quot;,
+       size = &quot;Real GDP per capita&quot;, color = &quot;&quot;) +
+  ggtitle(&quot;CO2 productivity vs. carbon footprint&quot;) +
+  theme_bw() +
+  scale_x_continuous(limits = c(0, 12),
+                     breaks = seq(0, 12, by = 2)) +
+  scale_color_manual(limits = c(0,1),
+                     values = c(&quot;deepskyblue4&quot;, &quot;darkorange3&quot;),
+                     labels = c(&quot;Non-OECD country&quot;, &quot;OECD country&quot;)) +
+  facet_wrap(~ year) +
+  theme(plot.title = element_text(hjust = 0.5, face=&quot;bold&quot;))</code></pre>
+<p><img src="fig/co2-prod-1.svg" width="768" /></p>
+</div>
+<div id="material-footprint" class="section level2">
+<h2>Material footprint</h2>
+<pre class="r"><code>full_join(material, green.growth, by=NULL) %&gt;%
+  filter(year==2010) %&gt;%
+  ## ggplot(aes(x = DMC_PROD, y = `Material Footprint of Imports per capita-RME_Imp per capita_Total`, color=OECD)) +
+  ggplot(aes(x = DMC_PROD, y = `Material.Footprint.of.Imports.per.capita.RME_Imp.per.capita_Total`, color=OECD)) +
+  geom_point(size=5) +
+  geom_text_repel(aes(label=country), size = 3) +
+  geom_hline(yintercept = 0, color=&quot;darkred&quot;) +
+  labs(x = &quot;Non-energy material productivity (GDP per unit of DMC)&quot;, y = &quot;Material footprint of imports (Tonnes per capita)&quot;,
+       size = &quot;Real GDP per capita&quot;, color = &quot;&quot;) +
+  ggtitle(&quot;Material productivity vs. material footprint (2010)&quot;) +
+  theme_bw() +
+  scale_y_continuous(limits = c(0, 35), breaks = seq(-10, 35, by = 10)) +
+  scale_color_manual(limits = c(0,1), values = c(&quot;deepskyblue4&quot;, &quot;darkorange3&quot;), labels = c(&quot;Non-OECD country&quot;, &quot;OECD country&quot;)) +
+  theme(plot.title = element_text(hjust = 0.5, face=&quot;bold&quot;))</code></pre>
+<p><img src="fig/mat-footprint-1-1.svg" width="768" /></p>
+<pre class="r"><code>## &quot;Material Footprint of Imports per capita (Biomass)-RME_Imp per capita_Biomass&quot; %&gt;%
+##   gsub(&quot;[ ()]&quot;, &quot;.&quot;, txt) %&gt;%
+##   gsub(&quot;\\-&quot;, &quot;.&quot;, .)
+
+shortlabels &lt;- c(`Material.Footprint.of.Imports.per.capita..Biomass..RME_Imp.per.capita_Biomass` = &quot;Biomass&quot;,
+                 `Material.Footprint.of.Imports.per.capita..Fossil.Fuels..RME_Imp.per.capita_Fossil.fuels`= &quot;Fossil fuels&quot;,
+                 `Material.Footprint.of.Imports.per.capita..Metal.Ores..RME_Imp.per.capita_Metal.ores` = &quot;Metal ores&quot;,
+                 `Material.Footprint.of.Imports.per.capita..Non.Metal.Ores..RME_Imp.per.capita_Non.metallic.minerals` = &quot;Non-metallic minerals&quot;)
+
+full_join(material, green.growth, by=NULL) %&gt;%
+  subset(select=c(country, year, DMC_PROD, GDP_RCAP, OECD,
+                 `Material.Footprint.of.Imports.per.capita..Biomass..RME_Imp.per.capita_Biomass`,
+                 `Material.Footprint.of.Imports.per.capita..Fossil.Fuels..RME_Imp.per.capita_Fossil.fuels`,
+                 `Material.Footprint.of.Imports.per.capita..Metal.Ores..RME_Imp.per.capita_Metal.ores`,
+                 `Material.Footprint.of.Imports.per.capita..Non.Metal.Ores..RME_Imp.per.capita_Non.metallic.minerals`)) %&gt;%
+  gather(`material type`,MF,-c(country, year, OECD, DMC_PROD, GDP_RCAP)) %&gt;%
+  filter(year==2010) %&gt;%
+  ggplot(aes(x = DMC_PROD, y = `MF`, color=OECD)) +
+  geom_point(size=5) +
+  geom_text_repel(aes(label=country), size = 3) +
+  geom_hline(yintercept = 0, color=&quot;darkred&quot;) +
+  labs(x = &quot;Non-energy material productivity (GDP per unit of DMC)&quot;, y = &quot;Material footprint of imports (Tonnes per capita)&quot;,
+       size = &quot;Real GDP per capita&quot;, color = &quot;&quot;) +
+  ggtitle(&quot;Material productivity vs. material footprint (2010)&quot;) +
+  theme_bw() +
+  scale_y_continuous(limits = c(0, 20), breaks = seq(0, 20, by = 5)) +
+  scale_color_manual(limits = c(0,1), values = c(&quot;deepskyblue4&quot;, &quot;darkorange3&quot;), labels = c(&quot;Non-OECD country&quot;, &quot;OECD country&quot;)) +
+  facet_wrap(~ `material type`, labeller=labeller(`material type` = shortlabels)) +
+  theme(plot.title = element_text(hjust = 0.5, face=&quot;bold&quot;))</code></pre>
+<p><img src="fig/mat-footprint-2-1.svg" width="768" /></p>
+</div>
+<div id="circular-flows" class="section level2">
+<h2>Circular flows</h2>
+<pre class="r"><code># chordDiagram(x = co2.exports, transparency = 0.25,annotationTrackHeight = c(0.1, 0.1))
+#
+# chordDiagram(x = co2.exports, transparency = 0.25, directional = 1,
+#              direction.type = c(&quot;arrows&quot;, &quot;diffHeight&quot;), diffHeight  = -0.03,
+#              annotationTrack = &quot;grid&quot;, preAllocateTracks = 1,
+#              link.arr.type = &quot;big.arrow&quot;, link.sort = TRUE, link.largest.ontop = TRUE)
+
+chordDiagram(x = co2.exports, transparency = 0.25, annotationTrack = &quot;grid&quot;, preAllocateTracks = 1,
+             link.sort = TRUE, link.largest.ontop = TRUE)
+
+circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
+  xlim = get.cell.meta.data(&quot;xlim&quot;)
+  ylim = get.cell.meta.data(&quot;ylim&quot;)
+  sector.name = get.cell.meta.data(&quot;sector.index&quot;)
+  circos.text(mean(xlim), ylim[1] + .1, sector.name, facing = &quot;clockwise&quot;, niceFacing = TRUE, adj = c(0, 0.5))
+  circos.axis(h = &quot;top&quot;, labels.cex = 0.5, major.tick.percentage = 0.2, sector.index = sector.name, track.index = 2)
+}, bg.border = NA)</code></pre>
+<p><img src="fig/circ-flows-1-1.svg" width="768" /></p>
+<pre class="r"><code>chordDiagram(x = CO2.net.exports, transparency = 0.25, annotationTrack = &quot;grid&quot;, preAllocateTracks = 1,
+             link.sort = TRUE, link.largest.ontop = TRUE)
+
+circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
+  xlim = get.cell.meta.data(&quot;xlim&quot;)
+  ylim = get.cell.meta.data(&quot;ylim&quot;)
+  sector.name = get.cell.meta.data(&quot;sector.index&quot;)
+  circos.text(mean(xlim), ylim[1] + .1, sector.name, facing = &quot;clockwise&quot;, niceFacing = TRUE, adj = c(0, 0.5))
+  circos.axis(h = &quot;top&quot;, labels.cex = 0.5, major.tick.percentage = 0.2, sector.index = sector.name, track.index = 2)
+}, bg.border = NA)</code></pre>
+<p><img src="fig/circ-flows-2-1.svg" width="768" /></p>
+<!-- ## Levinson (2009) replication -->
+</div>
+<div id="maps" class="section level2">
+<h2>Maps</h2>
+<pre class="r"><code>mapDevice(&quot;x11&quot;)
+invisible(capture.output(
+  spdf &lt;- joinCountryData2Map(foreign.co2.emissions, joinCode=&quot;ISO3&quot;, nameJoinColumn=&quot;country&quot;)
+))
+map1 &lt;- mapCountryData(spdf, nameColumnToPlot=&quot;total.emissions&quot;,
+                       catMethod = c(0,10,20,30,40,50,60,70,80,90,100,
+                                     200,300,400,500,600,700,800,900,1000,
+                                     2000,3000,4000,5000,6000,7000,8000,9000,
+                                     10000,11000,12000), addLegend=FALSE,
+                       mapTitle=&quot;&quot;)
+do.call(addMapLegend, c(map1, legendWidth=0.5, legendMar = 2.5, legendShrink=0.25))</code></pre>
+<p><img src="fig/maps-1-1.svg" width="768" /></p>
+<pre class="r"><code>mapDevice(&quot;x11&quot;)
+invisible(capture.output(
+  spdf &lt;- joinCountryData2Map(foreign.co2.emissions2, joinCode=&quot;ISO3&quot;, nameJoinColumn=&quot;country&quot;)
+))
+map2 &lt;- mapCountryData(spdf, nameColumnToPlot=&quot;total.emissions&quot;,
+                       catMethod = c(0,100,200,300,400,500,600,700,800,900,1000,
+                                     2000,3000,4000,5000,6000,7000,8000,9000,10000,
+                                     11000,12000,13000,14000,15000,16000,17000,18000,19000,
+                                     20000,30000,40000,50000,60000,70000,80000,90000,
+                                     100000,110000,120000,130000), addLegend=FALSE,
+                       mapTitle=&quot;&quot;)
+do.call(addMapLegend, c(map2, legendWidth=0.5, legendMar = 2.5, legendShrink=0.25))</code></pre>
+<p><img src="fig/maps-2-1.svg" width="768" /> `</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

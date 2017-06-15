@@ -2,8 +2,9 @@
 
 MAKE=make
 IMPORT=import
+RMD=_Rmd_files
 
-outputs=$(IMPORT)
+outputs=$(IMPORT) $(RMD)
 
 .PHONY: all $(outputs)
 all: $(outputs)

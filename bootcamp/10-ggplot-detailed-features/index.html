@@ -257,7 +257,31 @@ mutate_at(vars(-LOCATION), funs(scales::rescale))
 
 The existing ggplot2 extension [ggradar](http://www.ggplot2-exts.org/ggradar.html) can be modified. Alternatively, the [plotrix package](https://cran.r-project.org/web/packages/plotrix/index.html) can be tested. More examples can be found [here](http://boot.rdata.work/contrib/radar-example/)
 
-![](10-ggplot-detailed-features/fig-html/radar-chart-1.svg)&lt;!-- --&gt;
+
+```r
+p_radar &lt;-
+  ggradar(bli_radar,
+          font.radar = "sans",
+          grid.label.size = 4,
+          axis.label.size = 4,
+          group.point.size = 1,
+          group.line.width = 1,
+          plot.extent.x.sf = 1.8) +
+  scale_color_manual(values = c("#8cc841", "#da2128")) +
+theme(
+  legend.position = c(0.05, 0.95),
+  legend.justification = "left",
+  legend.direction = "horizontal",
+  legend.text = element_text(size = 8),
+  legend.background = element_rect(fill = NULL)
+)
+```
+
+---
+
+## Radar Plot
+
+![](10-ggplot-detailed-features/fig-html/radar-chart-2-1.svg)&lt;!-- --&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

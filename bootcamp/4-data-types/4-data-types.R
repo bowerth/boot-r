@@ -15,7 +15,11 @@ class(int_var)
 as.integer(dbl_var)
 as.double(int_var)
 
-c(dbl_var, int_var)
+combine <- c(dbl_var, int_var)
+combine
+
+# implicitly coerces integer to double
+class(combine)
 
 
 
@@ -43,6 +47,7 @@ floor(x)
 ##############
 # Import the numbers-your-turn.csv file in the data folder
 df <- read.csv("data/numbers-your-turn.csv")
+View(df)
 
 # 1. Are the vectors x & y equal? Exactly or approximately equal?
 identical(df$x, df$y)
@@ -75,7 +80,8 @@ paste(a, b)
 paste(a, b, "in R")
 paste("paste", "a", "string", "with", "dashes", sep = "-")
 paste0("paste", "a", "string", "with", "no", "spaces")
-
+string <- paste(c("one", "two", "three"), c(1, 2, 3), sep = ": ", collapse = "\n")
+cat(string)
 
 # testing, converting & coercing character strings
 a <- "Life of"
@@ -99,8 +105,15 @@ c2 <- c("How", "many", "elements", "are", "in", "this", "string?")
 length(c1)
 length(c2)
 
+# example of vectorised operation
 nchar(c1)
 nchar(c2)
+
+# split string to array of strings
+strsplit(c1, split = " ")[[1]]
+
+# convert array of strings to string
+nchar(paste(c2, collapse = " "))
 
 
 ###########
@@ -116,7 +129,10 @@ class(gender)
 factor(gender)
 factor(gender, levels = c("male", "female"))
 
+# factors by default in alphabetical order
 ordered(age.range)
+
+# can order factors arbitrarily (important for aggregation functions or customizing graphical output)
 ordered(age.range, levels = c("Under 18", "18-24", "25-34", "35-44", "45-54", "55-64", "65 or Above"))
 
 

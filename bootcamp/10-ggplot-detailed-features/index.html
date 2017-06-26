@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ggplot Detailed Features</title>
+    <meta charset="utf-8">
+    <link href="10-ggplot-detailed-features/libs/remark-css/example.css" rel="stylesheet" />
+    <script src="10-ggplot-detailed-features/libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="10-ggplot-detailed-features/libs/jquery/jquery.min.js"></script>
+    <script src="10-ggplot-detailed-features/libs/datatables-binding/datatables.js"></script>
+    <link href="10-ggplot-detailed-features/libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="10-ggplot-detailed-features/libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="10-ggplot-detailed-features/libs/dt-core/js/jquery.dataTables.min.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# ggplot Detailed Features
+## for OECD Charte Graphique
+### 2017/06/29
+
+---
+
+class: inverse, center, middle
+
+# theming
+
+http://ggplot2.tidyverse.org/reference/theme.html
+
+
+
+
+
+
+
+---
+
+## Grobs: Legend Width
+
+
+```r
+gp &lt;- ggplot2::ggplotGrob(p)
+leg &lt;- gtable::gtable_filter(gp, "guide-box")
+panel &lt;- gtable::gtable_filter(gp, "panel")
+leg[[1]][[1]]$widths[[elem]] =
+  panel$grobs[[1]]$children[[1]]$children[[1]]$width -
+  sum(leg[[1]][[1]]$widths) + leg[[1]][[1]]$widths[[elem]]
+gp.new = gtable::gtable_add_grob(gp, leg, t = 4, l = 4)
+```
+
+![](10-ggplot-detailed-features/fig-html/legend-width-eval-1.svg)&lt;!-- --&gt;
+
+---
+
+## Legend Guides 
+
+ It is possible to specify the `legend.key` height and width separately for each guide (colour, linetype etc.), see [guide_legend.html](http://ggplot2.tidyverse.org/reference/guide_legend.html)
+
+
+```r
+p1 + guides(fill = guide_legend(keywidth = unit(10, "mm"),
+                                keyheight = unit(10, "mm"), title = "",
+                                override.aes = list(color = "black")),
+            linetype = guide_legend(keywidth = unit(20, "mm"), title = ""))
+```
+
+![](10-ggplot-detailed-features/fig-html/key-size-1.svg)&lt;!-- --&gt;
+
+---
+
+## Y-Axis Position
+
+The y-axis title position can be modified in the theme using the parameters of `element_text`, see [theme elements](http://ggplot2.tidyverse.org/reference/element.html)
+
+
+```r
+p1 + scale_y_continuous(name = "This is the y-axis title") +
+  theme(axis.title.y = element_text(vjust = 1.08, angle = 0,
+                                    margin = margin(r = -75, unit = "pt")))
+```
+
+![](10-ggplot-detailed-features/fig-html/axis-title-position-1.svg)&lt;!-- --&gt;
+
+---
+
+## Secondary Y-Axis
+
+The `sec.axis` parameter of `scale_y_continuous` can define a transformed
+version of the primary y-axis,
+see [sec_axis()](http://ggplot2.tidyverse.org/reference/sec_axis.html). Prior to
+plotting, series with different units need to be scaled to the same unit manually.
+
+
+```r
+ggplot(mtcars, aes(cyl, mpg)) + geom_point()
+```
+
+![](10-ggplot-detailed-features/fig-html/sec-axis-1.svg)&lt;!-- --&gt;
+
+---
+
+We may want to display the levels of `mpg` and `hp` on the same plot
+
+<div id="htmlwidget-05451616150977026663" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-05451616150977026663">{"x":{"filter":"none","fillContainer":false,"data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280"],[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2],[6,6,4,6,8,6,8,4,4,6],[160,160,108,258,360,225,360,146.7,140.8,167.6],[110,110,93,110,175,105,245,62,95,123],[3.9,3.9,3.85,3.08,3.15,2.76,3.21,3.69,3.92,3.92],[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44],[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3],[0,0,1,1,0,1,0,1,1,1],[1,1,1,0,0,0,0,0,0,0],[4,4,4,3,3,3,3,4,4,4],[4,4,1,1,2,1,4,2,2,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n      <th>drat<\/th>\n      <th>wt<\/th>\n      <th>qsec<\/th>\n      <th>vs<\/th>\n      <th>am<\/th>\n      <th>gear<\/th>\n      <th>carb<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]},"selection":{"mode":"multiple","selected":null,"target":"row"}},"evals":[],"jsHooks":[]}</script>
+
+
+```r
+mtcars %&gt;% select(mpg, hp) %&gt;% mutate(hp_scaled = hp / 10) %&gt;% summary()
+```
+
+```
+##       mpg              hp          hp_scaled    
+##  Min.   :10.40   Min.   : 52.0   Min.   : 5.20  
+##  1st Qu.:15.43   1st Qu.: 96.5   1st Qu.: 9.65  
+##  Median :19.20   Median :123.0   Median :12.30  
+##  Mean   :20.09   Mean   :146.7   Mean   :14.67  
+##  3rd Qu.:22.80   3rd Qu.:180.0   3rd Qu.:18.00  
+##  Max.   :33.90   Max.   :335.0   Max.   :33.50
+```
+
+---
+
+Plot on separate axes, manual axis title and legend labels
+
+
+```r
+scalefactor &lt;- 10^1
+mtcars %&gt;%
+  mutate(hp_scaled = hp / scalefactor) %&gt;%
+  select(cyl, mpg, hp_scaled) %&gt;%
+  gather(key = variable, value = value, -cyl) %&gt;%
+  ggplot(aes(x=cyl, y = value, color = variable)) +
+  geom_point() +
+  scale_y_continuous(name = "mpg",
+                     sec.axis = sec_axis(name="hp", ~.*scalefactor)) +
+  scale_color_discrete(labels = c("hp", "mpg"))
+```
+
+![](10-ggplot-detailed-features/fig-html/rescale-mtcars-1.svg)&lt;!-- --&gt;
+
+---
+class: inverse, center, middle
+
+# aesthetics
+
+---
+
+## data labels
+
+The `geom_text` layer accepts parameters for `element_text`, for details see
+[geom_text](http://ggplot2.tidyverse.org/reference/geom_text.html).
+The fonts must be installed on your computer.
+
+
+
+
+```r
+## labelpos = 100 - (cumsum(pct) - pct / 2)
+p + geom_text(aes(y = labelpos,
+                  label = paste0(as.character(pct), "%")),
+              family = "serif", size = 6, color = "red") +
+  coord_polar(theta = "y")
+```
+
+![](10-ggplot-detailed-features/fig-html/pie-label-1.svg)&lt;!-- --&gt;
+
+---
+
+## High Low Plot
+
+Analogue to colors, linetypes and shapes can be mapped to variables,
+see [Shapes and line types](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/)
+
+
+
+
+
+```r
+p_hl &lt;- ggplot(data = df_hl, aes(x = date, y = value,
+                                 color = label, fill = label)) +
+  geom_point(aes(shape = label), size = 2) +
+  scale_shape_manual(values = c(17, 23, 15))
+themeHighLow(p = p_hl, col = c("black", "#4f81bd", "black"))
+```
+
+![](10-ggplot-detailed-features/fig-html/high-low-plot-base-1.svg)&lt;!-- --&gt;
+
+---
+
+## High Low Plot with Lines
+
+`geom_segment` allows drawing arbitrary lines, see [Line segments and curves](http://ggplot2.tidyverse.org/reference/geom_segment.html)
+
+
+```r
+df_hl2 &lt;- df_hl %&gt;% group_by(date) %&gt;% mutate(min=min(value), max=(max(value))) %&gt;% ungroup()
+p_hl2 &lt;- ggplot(data = df_hl2, aes( x = date, y = value, color = label, fill = label )) +
+  geom_point( aes( shape = label ), size = 2) +
+  geom_segment( aes( xend = date, y = min, yend = max ), size = 0.05) +
+  scale_shape_manual(values = c(17, 23, 15)); themeHighLow(p = p_hl2)
+```
+
+![](10-ggplot-detailed-features/fig-html/high-low-plot-line-1.svg)&lt;!-- --&gt;
+
+
+---
+class: inverse, center, middle
+
+# extensions
+
+---
+
+## Radar Plot
+
+Data extracted from http://stats.oecd.org/Index.aspx?DataSetCode=BLI
+
+```
+mutate_at(vars(-LOCATION), funs(scales::rescale))
+```
+
+
+
+
+```
+## 'data.frame':	2 obs. of  25 variables:
+##  $ group                                            : Factor w/ 39 levels "AUS","AUT","BEL",..: 14 21
+##  $ Air pollution                                    : num  0.348 0.522
+##  $ Dwellings without basic facilities               : num  0.0244 0.039
+##  $ Educational attainment                           : num  0.672 0.469
+##  $ Employees working very long hours                : num  0.1573 0.0635
+##  $ Employment rate                                  : num  0.62 0.34
+##  $ Feeling safe walking alone at night              : num  0.636 0.437
+##  $ Homicide rate                                    : num  0.08 0.08
+##  $ Household net adjusted disposable income         : num  0.65 0.503
+##  $ Household net financial wealth                   : num  0.314 0.333
+##  $ Housing expenditure                              : num  0.667 0.867
+##  $ Labour market insecurity                         : num  0.222 0.371
+##  $ Life expectancy                                  : num  0.964 0.95
+##  $ Life satisfaction                                : num  0.517 0.345
+##  $ Long-term unemployment rate                      : num  0.176 0.386
+##  $ Personal earnings                                : num  0.622 0.533
+##  $ Quality of support network                       : num  0.5 0.5
+##  $ Rooms per person                                 : num  0.611 0.389
+##  $ Self-reported health                             : num  0.552 0.517
+##  $ Stakeholder engagement for developing regulations: num  0.481 0.259
+##  $ Student skills                                   : num  0.734 0.64
+##  $ Time devoted to leisure and personal care        : num  1 0.592
+##  $ Voter turnout                                    : num  0.729 0.562
+##  $ Water quality                                    : num  0.755 0.367
+##  $ Years in education                               : num  0.356 0.441
+```
+
+---
+
+## Radar Plot
+
+The existing ggplot2 extension [ggradar](http://www.ggplot2-exts.org/ggradar.html) can be modified. Alternatively, the [plotrix package](https://cran.r-project.org/web/packages/plotrix/index.html) can be tested. More examples can be found [here](http://boot.rdata.work/contrib/radar-example/)
+
+![](10-ggplot-detailed-features/fig-html/radar-chart-1.svg)&lt;!-- --&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('showSlide', function (slide) {setTimeout(function() {window.dispatchEvent(new Event('resize'));}, 100)});</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

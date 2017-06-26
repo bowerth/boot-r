@@ -7,9 +7,9 @@
 
 # Creating vectors
 ## simple vector creation
-1:10
-2.5:15
 c(2, 10, 4)
+c(1:10)
+
 
 
 ## sequences of numbers with non-random specifications
@@ -39,7 +39,6 @@ tail(likes, 20)
 ## extract elements with bracket notation
 likes[1]
 likes[1:10]
-likes[c(10, 13512, 3778, 59131)]
 
 
 ## extract elements based on another vector
@@ -68,7 +67,11 @@ lonely <- likes[likes == 0]
 summary(likes)
 mean(likes, na.rm = TRUE)
 median(likes, na.rm = T)
+var(likes)
+sqrt(var(likes))
 sd(likes)
+sd
+
 range(likes)
 min(likes)
 max(likes)
@@ -227,25 +230,35 @@ str(facebook)
 
 # Extracting/subsetting data frames (data.frame[row, col])
 ## extract the second column and all rows using column indexing or the name
-facebook[, 2]
-facebook[, "age"]
+head(facebook[, 2])
+head(facebook[, "age"])
+
 
 ## extract all rows and columns 1 through 3
-facebook[, 1:3]
-facebook[, c("userid", "age", "dob_day")]
+head(facebook[, 1:3])
+names(facebook)[1:3]
+head(facebook[, c("userid", "age", "dob_day")])
+match(c("userid", "age", "dob_day"), names(facebook))
+
 
 ## subset for first row and all columns
 facebook[1, ]
+rows <- c(1, 10, 100)
+facebook[rows, ]
+head(facebook[facebook$likes > 5000,])
+fbFilter <- facebook[facebook$likes > 5000,]
+head(fbFilter[order(fbFilter$tenure), ])
 
-## use a vector to subset
+
+## subset both rows and columns
 columns <- c(2, 3, 5)
 rows <- c(1:25)
 facebook[rows, columns]
 
 
 # Conditional subsetting data frames (subset[data.frame, row condition, column selection])
-subset(facebook, age == 113, 1:10)
-subset(facebook, gender == "male" & age > 35, likes)
+head(subset(facebook, age == 113, 1:10))
+head(subset(facebook, gender == "male" & age > 35, likes))
 
 
 # Summarizing data frames
@@ -263,8 +276,8 @@ summary(facebook)
 ##############
 # YOUR TURN! #
 ##############
-# 1. Import the reddit data located at https://bradleyboehmke.github.io/public/data/reddit.csv
-url <- "https://bradleyboehmke.github.io/public/data/reddit.csv"
+# 1. Import the reddit data located at https://s3.eu-central-1.amazonaws.com/rbootcamp/reddit.csv
+url <- "https://s3.eu-central-1.amazonaws.com/rbootcamp/reddit.csv"
 reddit <- read.csv(url)
 
 # 2. What variables (column names) does this data frame contain?

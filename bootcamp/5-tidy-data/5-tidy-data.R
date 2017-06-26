@@ -73,7 +73,7 @@ expenditures %>% gather(Year, Costs, 2:15)
 # spread() #
 ############
 
-# if our data is wide we can spread it out
+# if our data is wide we can convert to long form
 wide <- cases %>% gather(Year, n, 2:4)
 wide
 

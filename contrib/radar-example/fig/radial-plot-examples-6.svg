@@ -100,7 +100,7 @@
 </symbol>
 </g>
 </defs>
-<g id="surface27">
+<g id="surface44">
 <rect x="0" y="0" width="576" height="432" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
   <use xlink:href="#glyph0-1" x="249.5" y="26.300781"/>
@@ -198,10 +198,10 @@
   <use xlink:href="#glyph1-3" x="180.925781" y="78.049805"/>
   <use xlink:href="#glyph1-2" x="187.597656" y="78.049805"/>
 </g>
-<path style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 288 188.113281 L 386.050781 88.425781 L 404.84375 185.398438 L 363.039062 247.738281 L 385.625 358.28125 L 287.890625 258.289062 L 241.355469 286.894531 L 212.808594 247.265625 L 254.683594 212.191406 L 216.378906 123.441406 "/>
-<path style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 288 56.535156 L 334.445312 159.359375 L 321.382812 212.398438 L 321.351562 234.105469 L 359.933594 322.734375 L 287.476562 389.867188 L 267.269531 251.507812 L 129.265625 274.003906 L 171.394531 184.664062 L 190.800781 87.8125 "/>
-<path style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,80.392157%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 288 144.253906 L 308.640625 194.828125 L 446.574219 171.898438 L 446.410156 275 L 334.242188 287.1875 L 287.75 302.148438 L 215.441406 322.28125 L 171.039062 260.636719 L 213.039062 198.425781 L 241.957031 159.070312 "/>
-<path style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 288 100.394531 L 360.246094 123.890625 L 363.113281 198.898438 L 404.722656 261.371094 L 308.550781 251.636719 L 287.613281 346.007812 L 189.527344 357.664062 L 254.582031 233.894531 L 129.75 170.898438 L 267.535156 194.695312 "/>
+<path style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 288 144.253906 L 386.050781 88.425781 L 321.382812 212.398438 L 363.039062 247.738281 L 385.625 358.28125 L 287.75 302.148438 L 241.355469 286.894531 L 254.582031 233.894531 L 213.039062 198.425781 L 190.800781 87.8125 "/>
+<path style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 288 56.535156 L 308.640625 194.828125 L 404.84375 185.398438 L 446.410156 275 L 359.933594 322.734375 L 287.613281 346.007812 L 215.441406 322.28125 L 171.039062 260.636719 L 254.683594 212.191406 L 241.957031 159.070312 "/>
+<path style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,80.392157%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 288 188.113281 L 334.445312 159.359375 L 363.113281 198.898438 L 404.722656 261.371094 L 308.550781 251.636719 L 287.890625 258.289062 L 267.269531 251.507812 L 129.265625 274.003906 L 129.75 170.898438 L 267.535156 194.695312 "/>
+<path style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 288 100.394531 L 360.246094 123.890625 L 446.574219 171.898438 L 321.351562 234.105469 L 334.242188 287.1875 L 287.476562 389.867188 L 189.527344 357.664062 L 212.808594 247.265625 L 171.394531 184.664062 L 216.378906 123.441406 "/>
 <path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 319.085938 228.371094 L 327.09375 228.371094 L 327.09375 218.03125 L 319.085938 218.03125 Z M 319.085938 228.371094 "/>
 <path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 362.945312 228.371094 L 370.953125 228.371094 L 370.953125 218.03125 L 362.945312 218.03125 Z M 362.945312 228.371094 "/>
 <path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 406.804688 228.371094 L 414.8125 228.371094 L 414.8125 218.03125 L 406.804688 218.03125 Z M 406.804688 228.371094 "/>

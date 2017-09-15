@@ -11,10 +11,11 @@ permalink: /r_bootcamp
 ### Class Information
 
 * R Programming I - Overview
-* Date: 26 April 2017
+* Date: 21 September 2017
+* Alternative Date: 29 September 2017
 
 * R Programming II - Graphics
-* Date: 4 May 2017
+* Date: 22 September 2017
 
 <!-- * Location: OECD, Paris, France -->
 <!-- * Webpage: [boot.rdata.work/r_bootcamp](http://boot.rdata.work/r_bootcamp) -->

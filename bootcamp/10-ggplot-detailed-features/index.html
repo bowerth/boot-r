@@ -3,13 +3,13 @@
   <head>
     <title>ggplot Detailed Features</title>
     <meta charset="utf-8">
-    <link href="10-ggplot-detailed-features/libs/remark-css/example.css" rel="stylesheet" />
     <script src="10-ggplot-detailed-features/libs/htmlwidgets/htmlwidgets.js"></script>
     <script src="10-ggplot-detailed-features/libs/jquery/jquery.min.js"></script>
     <script src="10-ggplot-detailed-features/libs/datatables-binding/datatables.js"></script>
     <link href="10-ggplot-detailed-features/libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="10-ggplot-detailed-features/libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
     <script src="10-ggplot-detailed-features/libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -21,17 +21,120 @@ class: center, middle, inverse, title-slide
 
 ---
 
+class: inverse2, center, middle
+
+# OECDPlotR
+
+![](under_construction.gif)
+
+
+
+
+
+
+---
+
+## OECDPlotR: Column Chart
+
+
+
+
+```r
+ggplot(data=dat1, aes(x=time, y=scrap, fill=dat1$region)) +
+  geom_barOECD(scaled=TRUE, # Used to pass on default to OECDggplotscale()
+               stat="identity", position=position_dodge()) +
+  OECDggplotscale(name="Country",scaleType = "fill") + # pecify color of scaling
+  xlab("Year") + ylab("Scrap") + ggtitle("China Plastic Scrap") + OECDtheme()
+```
+
+![](10-ggplot-detailed-features/fig-html/oecdplotr-bar-1-1.svg)&lt;!-- --&gt;
+
+---
+
+
+
+
+```r
+ggplot(data=dat1, aes(x=time, y=scrap, fill=dat1$region)) +
+  geom_barOECD(scaled=TRUE, stat="identity", position=position_dodge()) +
+  coord_flip() + OECDggplotscale(name="Country",scaleType = "fill") +
+  xlab("Year") + ylab("Scrap") + ggtitle("China Plastic Scrap") + OECDtheme()
+```
+
+![](10-ggplot-detailed-features/fig-html/oecdplotr-bar-2-1.svg)&lt;!-- --&gt;
+
+---
+
+## OECDPlotR: Stacked Column
+
+
+
+
+```r
+ggplot(data=dat1, aes(x=time, y=scrap, fill=dat1$region)) +
+  geom_barOECD(scaled=TRUE, stat="identity") +
+  OECDggplotscale(name="Country",scaleType = "fill") +
+  xlab("Year") + ylab("Scrap")+ OECDtheme()
+```
+
+![](10-ggplot-detailed-features/fig-html/oecdplotr-bar-3-1.svg)&lt;!-- --&gt;
+
+---
+
+## OECDPlotR: STI-OLIS Theme
+
+
+
+
+```r
+ggplot(data=dat1, aes(x=time, y=scrap, fill=dat1$region)) +
+  geom_barOECD(scaled=TRUE, stat="identity") +
+  OECDggplotscale(name="Country",scaleType = "fill") +
+  xlab("Year") + ylab("Scrap") +
+  ggtitle("China Plastic Scrap") + OECDtheme()
+```
+
+![](10-ggplot-detailed-features/fig-html/oecdplotr-bar-4-1.svg)&lt;!-- --&gt;
+
+
+---
+
+## OECDPlotR: Other Features
+
+
+
+
+```r
+ggplot(mpg, aes(class)) +
+  geom_barOECD(aes(fill = drv), position = position_stack(reverse = TRUE),scaled = TRUE) +
+  OECDggplotscale(scaleType="fill")+ OECDtheme()
+```
+
+![](10-ggplot-detailed-features/fig-html/oecdplotr-bar-10-1.svg)&lt;!-- --&gt;
+
+---
+
+## OECDPlotR: Other Features
+
+
+
+
+```r
+ggplot(mpg, aes(class)) +
+  geom_barOECD(aes(fill = drv), position = position_stack(reverse = TRUE),scaled = TRUE) +
+  OECDggplotscale(scaleType="fill") + OECDtheme(inbox = TRUE)
+```
+
+![](10-ggplot-detailed-features/fig-html/oecdplotr-bar-11-1.svg)&lt;!-- --&gt;
+
+
+
+---
 class: inverse, center, middle
 
 # theming
 
 http://ggplot2.tidyverse.org/reference/theme.html
-
-
-
-
-
-
 
 ---
 
@@ -311,9 +414,9 @@ ggplot(uspopage, aes(x=Year, y=Thousands, fill=AgeGroup)) + geom_area() +
 
 
 ```
-## R version 3.4.0 (2017-04-21)
+## R version 3.4.1 (2017-06-30)
 ## Platform: x86_64-redhat-linux-gnu (64-bit)
-## Running under: Fedora 25 (Workstation Edition)
+## Running under: Fedora 26 (Workstation Edition)
 ## 
 ## Matrix products: default
 ## BLAS/LAPACK: /usr/lib64/R/lib/libRblas.so
@@ -330,30 +433,21 @@ ggplot(uspopage, aes(x=Year, y=Thousands, fill=AgeGroup)) + geom_area() +
 ## [1] grid      stats     graphics  grDevices utils     datasets  base     
 ## 
 ## other attached packages:
-##  [1] ggiraphExtra_0.1.0 ggiraph_0.4.0      bindrcpp_0.2      
-##  [4] DT_0.2             knitr_1.16         gcookbook_1.0     
-##  [7] hrbrthemes_0.1.0   scales_0.4.1       ggradar_0.1       
-## [10] gtable_0.2.0       tidyr_0.6.3        dplyr_0.7.1       
-## [13] ggplot2_2.2.1      rmarkdown_1.6     
+##  [1] bindrcpp_0.2     DT_0.2           knitr_1.17       OECDplot_1.5.6  
+##  [5] gcookbook_1.0    hrbrthemes_0.1.0 scales_0.5.0     ggradar_0.1     
+##  [9] gtable_0.2.0     tidyr_0.7.0      dplyr_0.7.2      ggplot2_2.2.1   
+## [13] rmarkdown_1.6   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] mycor_0.1         reshape2_1.4.2    purrr_0.2.2.2    
-##  [4] lattice_0.20-35   colorspace_1.3-2  htmltools_0.3.6  
-##  [7] yaml_2.1.14       mgcv_1.8-17       base64enc_0.1-3  
-## [10] rlang_0.1.1       R.oo_1.21.0       glue_1.1.1       
-## [13] R.utils_2.5.0     gdtools_0.1.4     hunspell_2.5     
-## [16] uuid_0.1-2        bindr_0.1         plyr_1.8.4       
-## [19] stringr_1.2.0     munsell_0.4.3     R.methodsS3_1.7.1
-## [22] zip_1.0.0         htmlwidgets_0.8   codetools_0.2-15 
-## [25] evaluate_0.10.1   labeling_0.3      extrafont_0.17   
-## [28] Rttf2pt1_1.3.4    methods_3.4.0     Rcpp_0.12.11     
-## [31] backports_1.1.0   digest_0.6.12     stringi_1.1.5    
-## [34] xaringan_0.3      cowplot_0.7.0     rprojroot_1.2    
-## [37] tools_3.4.0       magrittr_1.5      lazyeval_0.2.0   
-## [40] tibble_1.3.3      extrafontdb_1.0   pkgconfig_2.0.1  
-## [43] Matrix_1.2-10     xml2_1.1.1        rvg_0.1.4        
-## [46] assertthat_0.2.0  officer_0.1.4     R6_2.2.2         
-## [49] nlme_3.1-131      compiler_3.4.0
+##  [1] Rcpp_0.12.12     compiler_3.4.1   plyr_1.8.4       bindr_0.1       
+##  [5] methods_3.4.1    tools_3.4.1      extrafont_0.17   digest_0.6.12   
+##  [9] evaluate_0.10.1  tibble_1.3.4     pkgconfig_2.0.1  rlang_0.1.2     
+## [13] yaml_2.1.14      hunspell_2.5     Rttf2pt1_1.3.4   stringr_1.2.0   
+## [17] htmlwidgets_0.9  rprojroot_1.2    glue_1.1.1       R6_2.2.2        
+## [21] XML_3.98-1.9     xaringan_0.3     purrr_0.2.3      extrafontdb_1.0 
+## [25] magrittr_1.5     backports_1.1.0  htmltools_0.3.6  assertthat_0.2.0
+## [29] colorspace_1.3-2 labeling_0.3     stringi_1.1.5    lazyeval_0.2.0  
+## [33] munsell_0.4.3
 ```
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

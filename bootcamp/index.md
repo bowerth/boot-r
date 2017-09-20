@@ -91,6 +91,15 @@ setwd("T:/DKI/rtrainings/bootcamp/code-scripts")
 | 17h00 | End              |
  -->
 
+### Local Usage
+
+R is open source and you can install the latest version from [cran.r-project.org](https://cran.r-project.org). 
+For a better experience, you may also want to install RStudio: [www.rstudio.com](https://www.rstudio.com)
+
+You should have no issue installation on personal devices (Windows, MacOSX, Linux).
+In order to perform a local installation on a work device, it is advised to contact your CI.
+
+
 ### Links
 
 #### ggplot

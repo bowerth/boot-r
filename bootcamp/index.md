@@ -102,6 +102,10 @@ In order to perform a local installation on a work device, it is advised to cont
 
 ### Links
 
+#### stats
+
+- [Normal distribution functions](https://www.r-bloggers.com/normal-distribution-functions/)
+
 #### ggplot
 
 - [docs.ggplot2.org](http://docs.ggplot2.org/)

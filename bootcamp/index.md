@@ -13,6 +13,7 @@ permalink: /r_bootcamp
 * R Programming I - Overview
 * Date: 21 September 2017
 * Alternative Date: 29 September 2017
+* Alternative Date 2: 2 October 2017
 
 * R Programming II - Graphics
 * Date: 22 September 2017

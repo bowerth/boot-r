@@ -61,6 +61,7 @@ You can download the required classroom material here: &nbsp; <a href="http://rb
 | 8 | Advanced plotting with ggplot | <a href="bootcamp/8-ggplot" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/8-ggplot/8-ggplot.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 | 9 | More plotting examples | <a href="bootcamp/9-moreplots" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/9-moreplots/9-moreplots.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 | 10 | ggplot Detailed features | <a href="bootcamp/10-ggplot-detailed-features" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/10-ggplot-detailed-features/10-ggplot-detailed-features.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| 20 | Case Study 1 | <a href="bootcamp/20-case-study-1" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/20-case-study-1/20-case-study-1.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 
 
 ### Hands-on Practice
@@ -72,10 +73,10 @@ Portable version
 
 OECD R Server
 :   Log on to server `AS-GEN-1`, start RStudio and set R installation:  
-	`\\\\asap1\\em_apps\$\\R\\R-3.3.1`
+	`\\asap1\em_apps$\R\R-3.3.1`
 
 ~~~
-setwd("T:/DKI/rtrainings/bootcamp/code-scripts")
+setwd("T:/DKI/rtrainings/bootcamp_09_2017/code-scripts")
 ~~~
 
 <!-- 

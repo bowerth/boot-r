@@ -104,6 +104,12 @@ In order to perform a local installation on a work device, it is advised to cont
 
 ### Links
 
+#### learn
+
+- [Coursera: R Programming](https://www.coursera.org/learn/r-programming) audit-only
+- [swirl](http://swirlstats.com), e.g. "Exploratory Data Analysis"
+- [R for Data Science](http://r4ds.had.co.nz)
+
 #### stats
 
 - [Normal distribution functions](https://www.r-bloggers.com/normal-distribution-functions/)

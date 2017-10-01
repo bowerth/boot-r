@@ -260,6 +260,35 @@ anti_join(a, b, by = "x1")
 a %>% anti_join(b, by = "x1")
 
 
+## join on multiple columns with different names
+
+sna_table1 <- read.csv("data/sna_table1.csv")
+str(sna_table1)
+
+sna_table1_data <-
+  sna_table1 %>%
+  select(LOCATION, TRANSACT, MEASURE, TIME, Value)
+
+sna_table1_labels <-
+  sna_table1 %>%
+  select(-TIME, -Year, -Value) %>%
+  distinct()
+
+names(sna_table1_labels) <- paste0(names(sna_table1_labels), "2")
+
+## nrow(sna_table1_data)
+## nrow(sna_table1_labels)
+
+## head(sna_table1_data)
+## head(sna_table1_labels)
+
+sna_table1_joined <-
+  sna_table1_data %>%
+  ## left_join(sna_table1_labels, by = c("LOCATION" = "location", "TRANSACT" = "transact", "MEASURE" = "measure"))
+  left_join(sna_table1_labels, by = c("LOCATION" = "LOCATION2", "TRANSACT" = "TRANSACT2", "MEASURE" = "MEASURE2"))
+
+head(sna_table1_joined)
+
 
 ##############
 ## YOUR TURN!

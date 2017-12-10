@@ -27,15 +27,17 @@ class: inverse, center, middle
 
 ## 6A. Value added and its components by activity, ISIC rev4
 
-- http://stats.oecd.org/Index.aspx?DataSetCRscript -e 'knitr::purl("11-dplyr-time-series.Rmd")'ode=SNA_TABLE6A
-- Measure: Current prices, Constant Prices (National Base Year)
+- http://stats.oecd.org/Index.aspx?DataSetCode=SNA_TABLE6A
+- Location: OECD Countries
+- Transaction: VA (B1GA), Output (P1), Intermediate Cons (P2)
 - Activity: 21 Sections ISIC Rev. 4 and Total Economy
+- Measure: Current prices, Constant Prices (National Base Year)
+- Time: 2000-2016
+- Value: National Currency (Mio.)
 
 
 ```r
 sna_dat &lt;- read.csv("../data/sna_table6a.csv")
-var_table &lt;- c("LOCATION", "TRANSACT", "ACTIVITY", "MEASURE", "TIME", "Value")
-sna_dat %&gt;% select_(.dots = var_table) %&gt;% head(10) %&gt;% knitr::kable("html")
 ```
 
 &lt;table&gt;
@@ -135,7 +137,11 @@ sna_dat %&gt;% select_(.dots = var_table) %&gt;% head(10) %&gt;% knitr::kable("h
 
 ---
 
-### Subset total economy data
+### Create subset with total economy data
+
+Could be any other data set with harmonized dimensions
+
+- rename value column to avoid automatic joining on common names
 
 
 ```r
@@ -143,8 +149,6 @@ sna_dat_tot &lt;-
   sna_dat %&gt;% filter(ACTIVITY == "VTOT") %&gt;%
   mutate(value_total = Value) %&gt;%
   select(LOCATION, TRANSACT, MEASURE, TIME, value_total)
-
-sna_dat_tot %&gt;% head(10) %&gt;% knitr::kable("html")
 ```
 
 &lt;table&gt;
@@ -235,14 +239,15 @@ sna_dat_tot %&gt;% head(10) %&gt;% knitr::kable("html")
 
 ### Calculate activities' share in total economy
 
+- join on common columns (here specified explicitly)
+- calculate ratio using two numeric columns (check reusult for `Inf` and `NA`)
+
 
 ```r
 sna_dat_share &lt;- sna_dat %&gt;%
   left_join(sna_dat_tot, by = c("LOCATION", "TRANSACT", "MEASURE", "TIME")) %&gt;%
-  mutate(share = Value / value_total)
-
-sna_dat_share %&gt;% select_(.dots = c(var_table, "value_total", "share")) %&gt;%
-  filter(ACTIVITY!="VTOT") %&gt;% head(10) %&gt;% knitr::kable("html")
+  mutate(share = Value / value_total,
+         share_pct = share * 100)
 ```
 
 &lt;table&gt;
@@ -256,108 +261,119 @@ sna_dat_share %&gt;% select_(.dots = c(var_table, "value_total", "share")) %&gt;
    &lt;th style="text-align:right;"&gt; Value &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; value_total &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; share &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; share_pct &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; AUT &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; VA0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VC &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 24730 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 644959 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0383435 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38908.35 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 190624.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.204 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20.4 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; AUT &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; VA0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VC &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2001 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 29729 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 690375 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0430621 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 40446.71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 197076.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.205 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20.5 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; AUT &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; VA0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VC &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2002 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 23243 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 731107 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0317915 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 40192.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 202353.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.199 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19.9 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; AUT &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; VA0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VC &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2003 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 26574 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 786958 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0337680 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 40467.36 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 207247.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.195 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19.5 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; AUT &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; VA0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VC &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 26779 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 847314 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0316046 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 42014.61 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 216098.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.194 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19.4 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; AUT &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; VA0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VC &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2005 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 27353 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 919054 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0297621 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44228.92 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 225888.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.196 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19.6 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; AUT &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; VA0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VC &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2006 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 24077 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1002660 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0240131 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 47735.52 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 239076.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20.0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; AUT &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; VA0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VC &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 27446 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1088972 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0252036 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 51552.36 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 253604.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.203 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20.3 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; AUT &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; VA0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VC &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2008 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 28990 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1175982 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0246517 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 51165.88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 262414.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.195 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19.5 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; AUT &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; VA0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VC &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2009 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 28675 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1207173 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0237538 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 47129.75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 256671.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.184 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.4 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -379,17 +395,18 @@ sna_dat_share %&gt;%
 ---
 class: inverse, center, middle
 
-# Ratio example: top 3 activities by country in 2016
+# Ratio example: Top 3 activities by country in 2016
 
 ---
 
-### Ratio example: top 3 activities by country in 2016
+### Ratio example: Top 3 activities by country in 2016
 
 
 ```r
 sna_dat_share_b1ga_2016_top3 &lt;- sna_dat_share %&gt;%
   filter(ACTIVITY != "VTOT", TRANSACT == "B1GA", MEASURE == "C", TIME == "2016") %&gt;%
-  group_by(LOCATION) %&gt;% top_n(3, wt = share)
+  group_by(LOCATION) %&gt;%
+  top_n(3, wt = share)
 ```
 
 &lt;table&gt;
@@ -506,17 +523,38 @@ sna_dat_share_b1ga_2016_top3 &lt;- sna_dat_share %&gt;%
    &lt;td style="text-align:right;"&gt; 4292397.0 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.27 &lt;/td&gt;
   &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; CZE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2016 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VG &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 471827.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4292397.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; CZE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B1GA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2016 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; VL &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 360797.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4292397.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.08 &lt;/td&gt;
+  &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
 ---
 
-### Ratio example: top 3 activities by country in 2016
+### Ratio example: Top 3 activities by country in 2016
 
 
 ```r
 sna_dat_share_b1ga_2016_top3 %&gt;%
-  ggplot(aes(x = LOCATION, y = share, fill = Activity)) +
+  mutate(act_label = paste(ACTIVITY, Activity)) %&gt;%
+  ggplot(aes(x = LOCATION, y = share, fill = act_label)) +
   geom_bar(stat = "identity", position = "stack", width = 0.6) +
   scale_fill_discrete(guide = guide_legend(nrow = 3)) +
   theme(legend.position = "top", legend.direction = "horizontal")
@@ -538,11 +576,15 @@ class: inverse, center, middle
 
 ```r
 sna_dat2 &lt;- sna_dat %&gt;% mutate(date = as.Date(paste0(TIME, "-01-01")))
-head(sna_dat2$date, 5); class(sna_dat2$date)
+head(sna_dat2$date, 5)
 ```
 
 ```
 ## [1] "2000-01-01" "2001-01-01" "2002-01-01" "2003-01-01" "2004-01-01"
+```
+
+```r
+class(sna_dat2$date)
 ```
 
 ```
@@ -577,10 +619,8 @@ stats::lag(head(sna_dat2$date, 5))
 ```r
 sna_growth &lt;- sna_dat2 %&gt;%
   group_by(LOCATION, TRANSACT, ACTIVITY, MEASURE) %&gt;%
-  mutate(value_lag = lag(Value), growth = Value / value_lag - 1)
-
-sna_growth %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth")) %&gt;%
-  head(10) %&gt;% knitr::kable("html")
+  mutate(value_lag = lag(Value),
+         growth = Value / value_lag - 1)
 ```
 
 &lt;table&gt;
@@ -615,7 +655,7 @@ sna_growth %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth")) 
    &lt;td style="text-align:right;"&gt; 2001 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 690375 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 644959 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0704169 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.070 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
@@ -625,7 +665,7 @@ sna_growth %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth")) 
    &lt;td style="text-align:right;"&gt; 2002 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 731107 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 690375 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0589998 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.059 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
@@ -635,7 +675,7 @@ sna_growth %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth")) 
    &lt;td style="text-align:right;"&gt; 2003 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 786958 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 731107 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0763924 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.076 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
@@ -645,7 +685,7 @@ sna_growth %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth")) 
    &lt;td style="text-align:right;"&gt; 2004 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 847314 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 786958 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0766953 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.077 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
@@ -655,7 +695,7 @@ sna_growth %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth")) 
    &lt;td style="text-align:right;"&gt; 2005 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 919054 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 847314 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0846675 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.085 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
@@ -665,7 +705,7 @@ sna_growth %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth")) 
    &lt;td style="text-align:right;"&gt; 2006 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1002660 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 919054 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0909696 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.091 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
@@ -675,7 +715,7 @@ sna_growth %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth")) 
    &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1088972 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1002660 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0860830 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.086 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
@@ -685,7 +725,7 @@ sna_growth %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth")) 
    &lt;td style="text-align:right;"&gt; 2008 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1175982 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1088972 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0799010 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.080 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; AUS &lt;/td&gt;
@@ -695,7 +735,7 @@ sna_growth %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth")) 
    &lt;td style="text-align:right;"&gt; 2009 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1207173 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1175982 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0265234 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.027 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -711,14 +751,11 @@ class: inverse, center, middle
 
 
 ```r
-sna_growth_top &lt;- sna_growth %&gt;% filter(ACTIVITY == "VTOT" &amp; TRANSACT == "B1GA") %&gt;%
-  group_by(LOCATION) %&gt;% top_n(n = 1, wt = abs(growth)) %&gt;% arrange(desc(growth))
-
-sna_growth$LOCATION &lt;-
-  factor(sna_growth$LOCATION, levels = as.character(sna_growth_top$LOCATION))
-
-sna_growth_top %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth")) %&gt;%
-  head(10) %&gt;% knitr::kable("html")
+sna_growth_top &lt;- sna_growth %&gt;%
+  filter(ACTIVITY == "VTOT" &amp; TRANSACT == "B1GA") %&gt;%
+  group_by(LOCATION) %&gt;%
+  top_n(n = 1, wt = abs(growth)) %&gt;%
+  arrange(desc(growth))
 ```
 
 &lt;table&gt;
@@ -743,7 +780,7 @@ sna_growth_top %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth
    &lt;td style="text-align:right;"&gt; 2002 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 317199.87 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 218880.94 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.4491891 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.449 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; IRL &lt;/td&gt;
@@ -753,7 +790,7 @@ sna_growth_top %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth
    &lt;td style="text-align:right;"&gt; 2015 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 236813.52 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 177538.93 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3338681 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.334 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; LVA &lt;/td&gt;
@@ -763,7 +800,7 @@ sna_growth_top %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth
    &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 20069.82 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 15130.98 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3264054 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.326 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; EST &lt;/td&gt;
@@ -773,7 +810,7 @@ sna_growth_top %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth
    &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 14258.48 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 11888.96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1993042 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.199 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; ISL &lt;/td&gt;
@@ -783,7 +820,7 @@ sna_growth_top %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth
    &lt;td style="text-align:right;"&gt; 2008 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1356808.00 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1152608.00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1771634 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.177 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; HUN &lt;/td&gt;
@@ -793,7 +830,7 @@ sna_growth_top %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth
    &lt;td style="text-align:right;"&gt; 2001 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 13335190.00 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 11395842.00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1701803 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.170 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; LUX &lt;/td&gt;
@@ -803,7 +840,7 @@ sna_growth_top %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth
    &lt;td style="text-align:right;"&gt; 2006 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 30338.94 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 26668.19 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1376450 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.138 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; MEX &lt;/td&gt;
@@ -813,7 +850,7 @@ sna_growth_top %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth
    &lt;td style="text-align:right;"&gt; 2004 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 8299895.00 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7302821.00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1365327 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.137 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; SVK &lt;/td&gt;
@@ -823,7 +860,7 @@ sna_growth_top %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth
    &lt;td style="text-align:right;"&gt; 2006 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 50714.29 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 44744.18 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1334277 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.133 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; NOR &lt;/td&gt;
@@ -833,7 +870,7 @@ sna_growth_top %&gt;% select_(.dots = c(var_table, "Value", "value_lag", "growth
    &lt;td style="text-align:right;"&gt; 2008 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2344746.00 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2085049.00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1245520 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.125 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1004,6 +1041,17 @@ df &lt;- data.frame(date,value)
 df$date = as.POSIXct(df$date)
 ```
 
+
+```
+##         date value
+## 1 2000-01-01  1592
+## 2 2000-04-01  1825
+## 3 2000-07-01  1769
+## 4 2000-10-01  1909
+## 5 2001-01-01  2022
+## 6 2001-04-01  2287
+```
+
 ---
 
 ## Growth Rate
@@ -1042,6 +1090,41 @@ df_q &lt;- df %&gt;% group_by(month=month(date)) %&gt;%
 ```
 
 ---
+
+
+```
+## R version 3.4.2 (2017-09-28)
+## Platform: x86_64-redhat-linux-gnu (64-bit)
+## Running under: Fedora 27 (Workstation Edition)
+## 
+## Matrix products: default
+## BLAS/LAPACK: /usr/lib64/R/lib/libRblas.so
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] methods   stats     graphics  grDevices utils     datasets  base     
+## 
+## other attached packages:
+## [1] bindrcpp_0.2    knitr_1.17      lubridate_1.6.0 tidyr_0.7.1    
+## [5] dplyr_0.7.4     ggplot2_2.2.1   rmarkdown_1.6  
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.13     bindr_0.1        magrittr_1.5     munsell_0.4.3   
+##  [5] colorspace_1.3-2 R6_2.2.2         rlang_0.1.2      highr_0.6       
+##  [9] stringr_1.2.0    plyr_1.8.4       tools_3.4.2      grid_3.4.2      
+## [13] gtable_0.2.0     xaringan_0.3     htmltools_0.3.6  yaml_2.1.14     
+## [17] lazyeval_0.2.0   rprojroot_1.2    digest_0.6.12    assertthat_0.2.0
+## [21] tibble_1.3.4     reshape2_1.4.2   purrr_0.2.3      glue_1.1.1      
+## [25] evaluate_0.10.1  labeling_0.3     stringi_1.1.5    compiler_3.4.2  
+## [29] scales_0.5.0     backports_1.1.0  pkgconfig_2.0.1
+```
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

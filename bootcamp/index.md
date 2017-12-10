@@ -100,6 +100,25 @@ setwd("T:/DKI/rtrainings/bootcamp_12_2017/code-scripts")
 | 17h00 | End              |
  -->
 
+### Time Structure R Programming I + II (ECO)
+
+| Time  | Item             |
+|------:|:-----------------|
+|  9h30 | Intro: RStudio UI elements    |
+| 10h00 | Get Data: text files, Excel |
+| 10h30 | Data Structures: vector, matrix, list |
+| 11h00 | Data Types: integer, double; character; factor; date |
+| 11h30 | Dplyr Data: select, filter, group_by, summarise, mutate, join |
+| 12h30 | Lunch Break      |
+| 13h30 | Time Series Manipulation: calculate growth rates and ratios (*) |
+| 14h00 | ggplot2 |
+| 15h00 | ggplot Detailed Features |
+| 15h30 | Case Study ECO 1 |
+| 16h00 | Case Study ECO 2 |
+| 16h30 | Questions |
+| 17h00 | End |
+
+
 ### Local Usage
 
 R is open source and you can install the latest version from [cran.r-project.org](https://cran.r-project.org). 

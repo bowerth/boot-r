@@ -10,13 +10,17 @@ permalink: /r_bootcamp
 
 ### Class Information
 
-* R Programming I - Overview
-* Date: 21 September 2017
-* Alternative Date: 29 September 2017
-* Alternative Date 2: 2 October 2017
+<!-- * R Programming I - Overview -->
+<!-- * Date: 21 September 2017 -->
+<!-- * Alternative Date: 29 September 2017 -->
+<!-- * Alternative Date 2: 2 October 2017 -->
 
-* R Programming II - Graphics
-* Date: 22 September 2017
+<!-- * R Programming II - Graphics -->
+<!-- * Date: 22 September 2017 -->
+
+* R Programming I + II (ECO)
+* Date: 11 December 2018
+* Alternative Date: 19 January 2018
 
 <!-- * Location: OECD, Paris, France -->
 <!-- * Webpage: [boot.rdata.work/r_bootcamp](http://boot.rdata.work/r_bootcamp) -->
@@ -62,7 +66,10 @@ You can download the required classroom material here: &nbsp; <a href="http://rb
 | 8 | Advanced plotting with ggplot | <a href="bootcamp/8-ggplot" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/8-ggplot/8-ggplot.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 | 9 | More plotting examples | <a href="bootcamp/9-moreplots" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/9-moreplots/9-moreplots.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 | 10 | ggplot Detailed features | <a href="bootcamp/10-ggplot-detailed-features" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/10-ggplot-detailed-features/10-ggplot-detailed-features.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| 11 | dplyr Time Series Manipulation | <a href="bootcamp/11-dplyr-time-series" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/11-dplyr-time-series/11-dplyr-time-series.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 | 20 | Case Study 1 | <a href="bootcamp/20-case-study-1" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="bootcamp/20-case-study-1/20-case-study-1.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| 21 | Case Study ECO 1 | <a href="https://github.com/oecd-eco/cneo2016/blob/master/demo/chart-generator.md" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="https://raw.githubusercontent.com/oecd-eco/cneo2016/master/demo/chart-generator.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| 22 | Case Study ECO 2 | <a href="https://github.com/oecd-eco/cneo2016/blob/master/demo-2/chart-generator-2.md" style="color:black;"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i></a> &nbsp; <a href="https://raw.githubusercontent.com/oecd-eco/cneo2016/master/demo-2/chart-generator-2.R" style="color:black;"><i class="fa fa-file-code-o" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 
 
 ### Hands-on Practice
@@ -77,7 +84,7 @@ OECD R Server
 	`\\asap1\em_apps$\R\R-3.3.1`
 
 ~~~
-setwd("T:/DKI/rtrainings/bootcamp_09_2017/code-scripts")
+setwd("T:/DKI/rtrainings/bootcamp_12_2017/code-scripts")
 ~~~
 
 <!-- 
@@ -106,6 +113,7 @@ In order to perform a local installation on a work device, it is advised to cont
 
 #### learn
 
+- [r-bloggers: Tutorials for learning R](https://www.r-bloggers.com/how-to-learn-r-2/)
 - [Coursera: R Programming](https://www.coursera.org/learn/r-programming) audit-only
 - [swirl](http://swirlstats.com), e.g. "Exploratory Data Analysis"
 - [R for Data Science](http://r4ds.had.co.nz)

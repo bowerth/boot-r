@@ -10,17 +10,17 @@ permalink: /r_bootcamp
 
 ### Class Information
 
-<!-- * R Programming I - Overview -->
-<!-- * Date: 21 September 2017 -->
-<!-- * Alternative Date: 29 September 2017 -->
-<!-- * Alternative Date 2: 2 October 2017 -->
+* R Programming I - Overview
 
-<!-- * R Programming II - Graphics -->
-<!-- * Date: 22 September 2017 -->
+* Date: 2 March 2018
 
-* R Programming I + II (ECO)
-* Date: 11 December 2018
-* Alternative Date: 19 January 2018
+* R Programming II - Graphics
+
+* Date: 27 April 2018
+
+<!-- * R Programming I + II (ECO) -->
+<!-- * Date: 11 December 2018 -->
+<!-- * Alternative Date: 26 January 2018 -->
 
 <!-- * Location: OECD, Paris, France -->
 <!-- * Webpage: [boot.rdata.work/r_bootcamp](http://boot.rdata.work/r_bootcamp) -->
@@ -74,14 +74,21 @@ You can download the required classroom material here: &nbsp; <a href="http://rb
 
 ### Hands-on Practice
 
+- log on to server `VS-ASAP-R-1`
+- start RStudio from `\\asap1\EM_Apps\R\Rstudio.lnk`
+- select version of R to use `\\asap1\em_apps$\R-ECO`
+- restart RStudio
+
 #### Starting R
 
-Portable version
-:   Start RStudio from `\\asap1\em_apps$\R`
+<!-- Portable version -->
+<!-- :   Start RStudio from `\\asap1\EM_Apps\R\Rstudio.lnk` and select `\\asap1\em_apps$\R-ECO` -->
+<!-- `\\asap1\em_apps$\R` -->
 
-OECD R Server
-:   Log on to server `AS-GEN-1`, start RStudio and set R installation:  
-	`\\asap1\em_apps$\R\R-3.3.1`
+<!-- OECD R Server -->
+<!-- :   Log on to server `AS-GEN-1`, start RStudio and set R installation: -->
+<!-- 	`\\asap1\em_apps$\R\R-3.3.1` -->
+
 
 ~~~
 setwd("T:/DKI/rtrainings/bootcamp_12_2017/code-scripts")
